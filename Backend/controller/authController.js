@@ -56,6 +56,7 @@ export const loginUser =async(req,res,next) => {
     try{
         const {email,password} = req.body;
         //check if user exists
+        console.log(req.body);
         if(!password || ! email){
             return res.status(401).json({
                 succes:false,
@@ -64,11 +65,11 @@ export const loginUser =async(req,res,next) => {
             })
         }
 
-        const userExist= await User.findOne({$or: [{email }]});
+        const userExist= await User.findOne({email});
         if(!userExist){
           return res.status(401).json({
             succes:false,
-            error:'user is exist',
+            error:'user is not exist',
             statusCode:401,
           })
         }

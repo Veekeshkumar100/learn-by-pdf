@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import {User} from "../model/user.js";
+import { User } from "../model/user.js";
 
 export const projectAuth = async (req, res, next) => {
   // Authentication logic here
@@ -11,11 +11,11 @@ export const projectAuth = async (req, res, next) => {
   ) {
     try {
       token = req.headers.authorization.split(" ")[1];
-     console.log(token);
+ 
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      console.log(decoded.id);
+
       req.user = await User.findById(decoded.id).select("-password");
-      console.log(req.user);
+ 
       if (!req.user) {
         return res.status(401).json({
           success: false,
@@ -28,12 +28,13 @@ export const projectAuth = async (req, res, next) => {
     } catch (error) {
       console.log("Auth middleware error", error.message);
 
-      if (error.name === "TokenExpiredError")
+      if (error.name === "TokenExpiredError") {
         res.status(401).json({
           success: false,
           error: "token is expired",
           statusCode: 401,
         });
+      }
 
       return res.status(401).json({
         success: false,
@@ -44,7 +45,7 @@ export const projectAuth = async (req, res, next) => {
   }
   if (!token) {
     return res
-      .statusCode(401)
+      .status(401)
       .json({ success: false, error: "token not found", statusCode: 401 });
   }
 };

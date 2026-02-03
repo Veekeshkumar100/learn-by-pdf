@@ -18,6 +18,10 @@ const documentSchema = new mongoose.Schema({
     fileSize: {
         type: Number,
     },
+    filePath:{
+    type: String,
+        required: true
+    },
    chunk:[{
     chunkIndex: {
         type: Number,

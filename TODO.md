@@ -1,0 +1,5 @@
+- [x] Fix chunkText call to include pageNumber parameter
+- [x] Correct field name from 'chunks' to 'chunk' in document update
+- [x] Remove invalid 'extractText' field from update
+- [x] Set status to 'ready' after successful processing
+- [x] Fix error handling to use correct model name

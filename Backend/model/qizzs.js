@@ -75,5 +75,5 @@ const quizSchema = new mongoose.Schema({
     },
 }, { timestamps: true });
 quizSchema.index({ userId: 1, documentId: 1 }, { unique: true });
-export const Quiz = mongoose.model('Quiz', quizSchema);
+export const Quizz = mongoose.model('Quizz', quizSchema);
     
