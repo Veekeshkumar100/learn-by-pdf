@@ -6,7 +6,7 @@ const quizSchema = new mongoose.Schema({
         ref: 'User',
         required: true,
     },
-    title: {
+  title:{
         type: String,
         required: [true, 'Quiz title is required'],
         trim: true

@@ -27,8 +27,8 @@ const ChatHistorySchema = new Schema(
           type: Date,
           default: Date.now,
         },
-        releventChunk: {
-          type: [number],
+        relevantChunk: {
+          type: [Number],
           default: [],
         },
       },

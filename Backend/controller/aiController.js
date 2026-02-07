@@ -1,1 +1,340 @@
-{"success":true,"data":[{"_id":"697c9c6bac2fa0dececedf49","userId":"697c8939a33fabd9ec399aca","title":"react js stady","fileName":"reactjs1.pdf","fileSize":1602825,"filePath":"http:localhost:5000/uploads/1769774187149-514396 - reactjs1.pdf","status":"processing","chunk":[],"uploadedDate":"2026-01-30T11:56:27.276Z","lastAccessed":"2026-01-30T11:56:27.276Z","createdAt":"2026-01-30T11:56:27.292Z","updatedAt":"2026-01-30T11:56:27.292Z","__v":0,"flashcardSets":[],"flashCardCount":0,"quizzCount":0},{"_id":"697c9c064500f79afddbfbd3","userId":"697c8939a33fabd9ec399aca","title":"react js stady","fileName":"reactjs1.pdf","fileSize":1602825,"filePath":"http:localhost:5000/uploads/1769774086454-723147 - reactjs1.pdf","status":"processing","chunk":[],"uploadedDate":"2026-01-30T11:54:46.515Z","lastAccessed":"2026-01-30T11:54:46.515Z","createdAt":"2026-01-30T11:54:46.525Z","updatedAt":"2026-01-30T11:54:46.525Z","__v":0,"flashcardSets":[],"flashCardCount":0,"quizzCount":0},{"_id":"697c99af8aae9832ecca2f34","userId":"697c8939a33fabd9ec399aca","title":"react js stady","fileName":"reactjs1.pdf","fileSize":1602825,"filePath":"http:localhost:5000/uploads/1769773487641-781376 - reactjs1.pdf","status":"processing","chunk":[],"uploadedDate":"2026-01-30T11:44:47.701Z","lastAccessed":"2026-01-30T11:44:47.702Z","createdAt":"2026-01-30T11:44:47.730Z","updatedAt":"2026-01-30T11:44:47.730Z","__v":0,"flashcardSets":[],"flashCardCount":0,"quizzCount":0},{"_id":"697c993077a1b4052bae0557","userId":"697c8939a33fabd9ec399aca","title":"react js stady","fileName":"reactjs1.pdf","fileSize":1602825,"filePath":"http:localhost:5000/uploads/1769773360932-384337 - reactjs1.pdf","status":"processing","chunk":[],"uploadedDate":"2026-01-30T11:42:40.979Z","lastAccessed":"2026-01-30T11:42:40.980Z","createdAt":"2026-01-30T11:42:40.992Z","updatedAt":"2026-01-30T11:42:40.992Z","__v":0,"flashcardSets":[],"flashCardCount":0,"quizzCount":0},{"_id":"697c98e02cc01c923b405804","userId":"697c8939a33fabd9ec399aca","title":"react js stady","fileName":"reactjs1.pdf","fileSize":1602825,"filePath":"http:localhost:5000/uploads/1769773280487-350902 - reactjs1.pdf","status":"processing","chunk":[],"uploadedDate":"2026-01-30T11:41:20.531Z","lastAccessed":"2026-01-30T11:41:20.531Z","createdAt":"2026-01-30T11:41:20.541Z","updatedAt":"2026-01-30T11:41:20.541Z","__v":0,"flashcardSets":[],"flashCardCount":0,"quizzCount":0},{"_id":"697c97f81c9bc03ac3212697","userId":"697c8939a33fabd9ec399aca","title":"react js stady","fileName":"reactjs1.pdf","fileSize":1602825,"filePath":"http:localhost:5000/uploads/1769773048183-908354 - reactjs1.pdf","status":"processing","chunk":[],"uploadedDate":"2026-01-30T11:37:28.211Z","lastAccessed":"2026-01-30T11:37:28.211Z","createdAt":"2026-01-30T11:37:28.213Z","updatedAt":"2026-01-30T11:37:28.213Z","__v":0,"flashcardSets":[],"flashCardCount":0,"quizzCount":0},{"_id":"697c979b1c9bc03ac3212694","userId":"697c8939a33fabd9ec399aca","title":"react js stady","fileName":"reactjs1.pdf","fileSize":1602825,"filePath":"http:localhost:5000/uploads/1769772955143-194957 - reactjs1.pdf","status":"processing","chunk":[],"uploadedDate":"2026-01-30T11:35:55.182Z","lastAccessed":"2026-01-30T11:35:55.182Z","createdAt":"2026-01-30T11:35:55.191Z","updatedAt":"2026-01-30T11:35:55.191Z","__v":0,"flashcardSets":[],"flashCardCount":0,"quizzCount":0},{"_id":"697c9573fa011bb0b5f3f4ef","userId":"697c8939a33fabd9ec399aca","title":"react js stady","fileName":"reactjs1.pdf","fileSize":1602825,"filePath":"http:localhost:5000/uploads/1769772403825-246709 - reactjs1.pdf","status":"processing","chunk":[],"uploadedDate":"2026-01-30T11:26:43.851Z","lastAccessed":"2026-01-30T11:26:43.851Z","createdAt":"2026-01-30T11:26:43.853Z","updatedAt":"2026-01-30T11:26:43.853Z","__v":0,"flashcardSets":[],"flashCardCount":0,"quizzCount":0},{"_id":"697c9571fa011bb0b5f3f4ec","userId":"697c8939a33fabd9ec399aca","title":"react js stady","fileName":"reactjs1.pdf","fileSize":1602825,"filePath":"http:localhost:5000/uploads/1769772401626-646098 - reactjs1.pdf","status":"processing","chunk":[],"uploadedDate":"2026-01-30T11:26:41.658Z","lastAccessed":"2026-01-30T11:26:41.658Z","createdAt":"2026-01-30T11:26:41.666Z","updatedAt":"2026-01-30T11:26:41.666Z","__v":0,"flashcardSets":[],"flashCardCount":0,"quizzCount":0},{"_id":"697c9522709b5d15b8a6d482","userId":"697c8939a33fabd9ec399aca","title":"react js stady","fileName":"reactjs1.pdf","fileSize":1602825,"filePath":"http:localhost:5000/uploads/1769772322167-328849 - reactjs1.pdf","status":"processing","chunk":[],"uploadedDate":"2026-01-30T11:25:22.270Z","lastAccessed":"2026-01-30T11:25:22.270Z","createdAt":"2026-01-30T11:25:22.286Z","updatedAt":"2026-01-30T11:25:22.286Z","__v":0,"flashcardSets":[],"flashCardCount":0,"quizzCount":0},{"_id":"697c94a28583e3d5dee2f6f1","userId":"697c8939a33fabd9ec399aca","title":"react js stady","fileName":"reactjs1.pdf","fileSize":1602825,"filePath":"http:localhost:5000/uploads/1769772194196-731442 - reactjs1.pdf","status":"processing","chunk":[],"uploadedDate":"2026-01-30T11:23:14.271Z","lastAccessed":"2026-01-30T11:23:14.271Z","createdAt":"2026-01-30T11:23:14.281Z","updatedAt":"2026-01-30T11:23:14.281Z","__v":0,"flashcardSets":[],"flashCardCount":0,"quizzCount":0},{"_id":"697c929ed5d24adc06c5c8ee","userId":"697c8939a33fabd9ec399aca","title":"react js stady","fileName":"reactjs1.pdf","fileSize":1602825,"filePath":"http:localhost:5000/uploads/1769771678199-404716 - reactjs1.pdf","status":"processing","chunk":[],"uploadedDate":"2026-01-30T11:14:38.310Z","lastAccessed":"2026-01-30T11:14:38.310Z","createdAt":"2026-01-30T11:14:38.344Z","updatedAt":"2026-01-30T11:14:38.344Z","__v":0,"flashcardSets":[],"flashCardCount":0,"quizzCount":0},{"_id":"697c91ce7fc034e0aa623542","userId":"697c8939a33fabd9ec399aca","title":"react js stady","fileName":"reactjs1.pdf","fileSize":1602825,"filePath":"http:localhost:5000/uploads/1769771470833-888366 - reactjs1.pdf","status":"processing","chunk":[],"uploadedDate":"2026-01-30T11:11:10.886Z","lastAccessed":"2026-01-30T11:11:10.886Z","createdAt":"2026-01-30T11:11:10.896Z","updatedAt":"2026-01-30T11:11:10.896Z","__v":0,"flashcardSets":[],"flashCardCount":0,"quizzCount":0}],"count":13}
+import * as geminiService from "../utility/geminiServer.js";
+
+import { Document } from "../model/document.js";
+import { FlashCard } from "../model/flaseCard.js";
+import { Quizz } from "../model/qizzs.js";
+import { findRelevantChunks } from "../utility/testChunker.js";
+import { ChatHistory } from "../model/chatHistary.js";
+export const generateFlashCard = async (req, res, next) => {
+  try {
+    console.log(req.body);
+    const { documentId, count = 10 } = req.body;
+    if (!documentId) {
+      return res.status(401).json({
+        success: true,
+        message: "document id is not provided",
+        status: 401,
+      });
+    }
+    const document = await Document.findOne({
+      _id: documentId,
+    });
+
+    if (!document) {
+      return res.status(401).json({
+        success: true,
+        message: "document is not found",
+        status: 401,
+      });
+    }
+
+    const cards = await geminiService.generateFlashCardfromAi(
+      document.extreactedText,
+      parseInt(count),
+    );
+    console.log("cards in ai C", cards);
+
+    const FlashCardset = await FlashCard.create({
+      userId: req.user.id,
+      documentId: document._id,
+      cards: cards.map((card) => ({
+        question: card.question,
+        answer: card.answer,
+        difficulty: card.difficulty,
+        reviewCount: 0,
+        isStarred: false,
+      })),
+    });
+
+    res.status(201).json({
+      success: true,
+      message: "Flashcard set is generated successfully",
+      data: FlashCardset,
+      status: 201,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//generate flashCArdQui from the document
+
+export const generateQuiz = async (req, res, next) => {
+  try {
+    console.log(req.body);
+    const { documentId, count = 10 } = req.body;
+    if (!documentId) {
+      return res.status(401).json({
+        success: true,
+        message: "document id is not provided",
+        status: 401,
+      });
+    }
+    const document = await Document.findOne({
+      _id: documentId,
+    });
+
+    if (!document) {
+      return res.status(401).json({
+        success: true,
+        message: "document is not found",
+        status: 401,
+      });
+    }
+    const quizeMcq = await geminiService.generateQuiz(
+      document.extreactedText,
+      parseInt(count),
+    );
+
+    const quizSet = await Quizz.create({
+      userId: req.user.id,
+      documentId: document._id,
+      title: document.title,
+      questions: quizeMcq,
+      userAnswers: [],
+      totalQuestions: quizeMcq.length,
+      score: 0,
+    });
+    if (quizSet) {
+      res.status(404).json({
+        success: false,
+        message: "quizset is not set",
+        status: 404,
+      });
+    }
+    res.status(201).json({
+      success: true,
+      message: "Flashcard set is generated successfully",
+      data: quizSet,
+      status: 201,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//generate document summary
+
+export const generatDocunetSummary = async (req, res, next) => {
+  try {
+    console.log(req.body);
+    const { documentId } = req.body;
+    if (!documentId) {
+      return res.status(401).json({
+        success: true,
+        message: "document id is not provided",
+        status: 401,
+      });
+    }
+    const document = await Document.findOne({
+      _id: documentId,
+    });
+
+    if (!document) {
+      return res.status(401).json({
+        success: false,
+        message: "document is not found",
+        status: 401,
+      });
+    }
+    const documentSummarry = await geminiService.generatText(
+      document.extreactedText,
+    );
+
+    if (!documentSummarry) {
+      return res.status(401).json({
+        success: false,
+        message: "sever not give responce properly",
+        status: 401,
+      });
+    }
+    res.status(201).json({
+      success: true,
+      message: " set is generated successfully",
+      data: {
+        documentId: document._id,
+        title: document.title,
+        documentSummarry,
+      },
+      status: 201,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//generate document chat
+
+export const Chating = async (req, res, next) => {
+  try {
+    const { question, documentId } = req.body;
+    if (!documentId) {
+      return res.status(401).json({
+        success: true,
+        message: "document id is not provided",
+        status: 401,
+      });
+    }
+    const document = await Document.findOne({
+      _id: documentId,
+      userId: req.user.id,
+      status: "ready",
+    });
+
+    if (!document) {
+      return res.status(401).json({
+        success: false,
+        message: "document is not found",
+        status: 401,
+      });
+    }
+
+    //find the relevent chunk
+    const relevantChunk = findRelevantChunks(document.chunk, question, 4);
+    const indexecs = relevantChunk.map((c) => c.chunkIndex);
+
+    //get or cerate chat history
+    let chatHistory = await ChatHistory.findOne({
+      userId: req.user.id,
+      documentId:documentId,
+    });
+    if (!chatHistory) {
+      chatHistory = await ChatHistory.create({
+        userId: req.user.id,
+        documentId: documentId,
+        message: [],
+      });
+    }
+
+    const chatAnwer = await geminiService.chatwithcontext(
+      question,
+      relevantChunk,
+    );
+
+    if (!chatAnwer) {
+      return res.status(401).json({
+        success: false,
+        message: "sever not give responce properly",
+        status: 401,
+      });
+    }
+
+     chatHistory.message.push(
+      {
+        role: "user",
+        content: question,
+        timeStamp: new Date(),
+        relevantChunk: [],
+      },
+      {
+        role: "user",
+        content: chatAnwer,
+        timeStamp: new Date(),
+        relevantChunk: indexecs,
+      },
+    );
+    await chatHistory.save();
+
+    res.status(200).json({
+     success:true,
+     data:{
+        question,
+        chatAnwer,
+        relevantChunkIndex:indexecs,
+        ChatHistoryID:chatHistory.id,
+     },
+     message:"chat history created successfully"
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//explain the concept from the document
+export const explainContext=async(req,res,next)=>{
+    try {
+        const { documentId,concept } = req.body;
+    if (!documentId) {
+      return res.status(401).json({
+        success: true,
+        message: "document id is not provided",
+        status: 401,
+      });
+    }
+    const document = await Document.findOne({
+      _id: documentId,
+    });
+
+    if (!document) {
+      return res.status(401).json({
+        success: false,
+        message: "document is not found",
+        status: 401,
+      });
+    }
+     const relevantChunk = findRelevantChunks(document.chunk, concept, 4);
+    const context = relevantChunk.map((c) => c.content).join("\n\n");
+   console.log("context",context);
+    const explaination = await geminiService.explainConcept(
+      concept,
+      context
+    );
+    if (!explaination) {
+      return res.status(401).json({
+        success: false,
+        message: "sever not give responce explaination properly",
+        status: 401,
+      });
+    }
+    res.status(201).json({
+      success: true,
+      message: " explaination is generated successfully",
+      data: {
+        concept,
+        explaination,
+        relevantChunkIndex:relevantChunk.map((c) => c.chunkIndex),
+      },
+      status: 201,
+    });
+    } catch (error) {
+        console.error("error while generating explaination",error);
+    }
+}
+
+
+
+export const getChatHistory=async(req,res,next)=>{
+    try{
+      const {documentId}=req.body;
+      console.log(documentId);
+     if (!documentId) {
+      return res.status(401).json({
+        success: true,
+        message: "document id is not provided",
+        status: 401,
+      });
+    }
+      const chatHistary= await ChatHistory.findOne({
+        userId:res.user.id,
+        documentId:documentId,
+      }).select('message'); //ony retreiwing the message array
+
+      if(!chatHistary){
+        return res.status(401).json({
+        success: true,
+        data:[],
+        message: "chatHistory  is not exist",
+        status: 401, 
+      })
+
+    }
+    res.status(200).json({
+     success:true,
+     messagedata:chatHistary.message,
+     message:"chathistory find successfully",
+    });
+
+    }catch(error){
+     console.log("error while getting chat history",error)
+    }
+}

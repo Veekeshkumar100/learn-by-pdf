@@ -1,25 +1,23 @@
-import  fs from "fs";
-import {PDFParse} from "pdf-parse";
+import fs from "fs";
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+const {PDFParse} = require("pdf-parse");
 
 export const textExchangFromPdf=async(filePath)=>{
 try {
-    console.log("file url in text",filePath);
-    console.log((PDFParse));
-    const databuffer = await fs.readFile(filePath,"utf8", (err, data) => {
+    const databuffer =  fs.readFileSync(filePath, (err, data) => {
   if (err) {
     console.error(err);
     return;
   }
   console.log("file reading data",data);
 });
-    console.log("databuffer",databuffer);
+   
      const uint8Array = new Uint8Array(databuffer)
     //  pdf-pase except the Unit8array not buffer
-      
     const parser = new  PDFParse(uint8Array);
     const data =await parser.getText();
-     console.log("extrected data",data);
-     
+
     return {
         text:data.text,
         pageNum:data.numpages,
@@ -32,5 +30,7 @@ try {
 
 
 }
+
+
 
 

@@ -13,7 +13,7 @@ const flashCardSchema = new mongoose.Schema(
             required: true,
             trim: true,
         },
-        card:[
+        cards:[
             {
         question: {
             type: String,
@@ -21,7 +21,7 @@ const flashCardSchema = new mongoose.Schema(
             trim: true,
 
             },
-             answer: {
+        answer: {
             type: String,
             required: true,
 
@@ -52,5 +52,4 @@ const flashCardSchema = new mongoose.Schema(
     { timestamps: true }
 );
  flashCardSchema.index({ userId: 1, documentId: 1 });
-
-module.exports = mongoose.model('FlashCard', flashCardSchema);
+export const FlashCard = mongoose.model('FlashCard', flashCardSchema);

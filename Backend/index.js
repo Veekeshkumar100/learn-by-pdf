@@ -7,6 +7,8 @@ import errorHandler from "./Middleware/errorHandler.js";
 import connectdb from "./config/db.js";
 import router from "./route/authRout.js";
 import DocumentRout from "./route/documentRout.js";
+import FlashCardRouts from "./route/flashRout.js";
+import AiRout from "./route/aiRout.js";
 dotenv.config();
 const app = express();
 app.use(
@@ -27,6 +29,8 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(errorHandler);
 app.use("/api/v2/documets", DocumentRout);
 app.use("/api/v1/users", router);
+app.use("/api/v1/flashcard", FlashCardRouts);
+app.use("/api/v1/ai", AiRout);
 //404 handler
 app.use((req, res, next) => {
   res

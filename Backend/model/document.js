@@ -22,21 +22,15 @@ const documentSchema = new mongoose.Schema({
     type: String,
         required: true
     },
-   chunk:[{
-    chunkIndex: {
-        type: Number,
-        required: true
-   },
-   content: {
-        type: String,
-        required: true
+    extreactedText:{
+      type: String,
+     
     },
-    pageNumber: {
-        type: Number,
-        required: true,
-        default: 0,
+   chunk:[{
+     content:String,
+    chunkIndex:Number,
 
-    },}],
+    pageNumber:Number,}],
     uploadedDate:{
         type: Date,
         default: Date.now,

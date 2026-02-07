@@ -1,7 +1,7 @@
 import fs from "fs/promises";
 import mongoose from "mongoose";
 import { Document } from "../model/document.js";
-import { textExchangFromPdf } from "../utility/pdfParser.js";
+import  {textExchangFromPdf}  from "../utility/pdfParser.js";
 import { chunkText } from "../utility/testChunker.js";
 // import { uploadDir } from "../config/multer.js";
 
@@ -11,20 +11,20 @@ import { chunkText } from "../utility/testChunker.js";
 const processPDF = async (documentid, filePath) => {
   try {
     //taking text
-    console.log("abl in text",filePath);
-    const { text, pageNum } = await textExchangFromPdf(filePath);
-    console.log("text of pdf process",text);
+    const { text,pageNum } = await textExchangFromPdf(filePath);
     //create ing chunks
     const chunks = await chunkText(text, pageNum);
-    console.log(chunks);
+
 
     //updating document
-    await Document.findByIdAndUpdate(documentid, {
-      chunk: chunks,
+   const updatedDaTa=await Document.findByIdAndUpdate(documentid, {
+    extreactedText:text,
+      chunk:chunks,
       status: "ready",
-    });
+    }, { new: true });
 
-    console.log(`document ${documentid} processed sucesfully`);
+    console.log(`document ${documentid}  processed sucesfully`);
+    return updatedDaTa;
   } catch (error) {
     console.log("error while processing pdf", error);
     await Document.findByIdAndUpdate(documentid, {
@@ -34,7 +34,7 @@ const processPDF = async (documentid, filePath) => {
 };
 export const uploadPdf = async (req, res, next) => {
   try {
-    console.log(req.file);
+   
     if (!req.file) {
       return res.status(401).json({
         success: false,
@@ -68,7 +68,7 @@ export const uploadPdf = async (req, res, next) => {
       status: "processing",
     });
 
-    processPDF(document._id, filePath).catch((err) =>
+   const data=await processPDF(document._id, filePath).catch((err) =>
       console.error("pdf processing error:", err),
     );
 
@@ -76,7 +76,7 @@ export const uploadPdf = async (req, res, next) => {
       success: true,
       message: "PDF uploaded successfully",
       status: 200,
-      document,
+      dacument:data,
     });
   } catch (error) {
     next(error);
