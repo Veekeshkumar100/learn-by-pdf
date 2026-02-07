@@ -9,6 +9,6 @@ AiRout.post("/generate-Quiz",projectAuth,generateQuiz);
 AiRout.post("/generate-Summary",projectAuth,generatDocunetSummary)
 AiRout.post("/generate-Chat",projectAuth,Chating)
 AiRout.post("/generate-Explaination",projectAuth,explainContext)
-AiRout.post("/generate-getchatHistory",projectAuth,getChatHistory)
+AiRout.post("/generate-getchatHistory",getChatHistory)
 
-export default AiRout;
+export default AiRout;``

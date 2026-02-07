@@ -90,7 +90,7 @@ export const generateQuiz = async (text, numQuize = 5) => {
     const questionBlocks = generatedText.split("---").filter((q) => q.trim());
     for (const block of questionBlocks) {
       let lines = block.trim().split("\n");
-      console.log("lines", lines);
+      
       let question = "",
         option = [],
         currectanswer = "",
@@ -99,7 +99,7 @@ export const generateQuiz = async (text, numQuize = 5) => {
       for (const line of lines) {
         const trimmed = line.trim();
         const optionMatch = trimmed.match(/^Q[1-4]:\s*(.+)$/i);
-        console.log("op",optionMatch);
+       
         if (optionMatch) {
           option.push(optionMatch[1].trim());
         } else if (/^C:/i.test(trimmed)) {
@@ -115,7 +115,6 @@ export const generateQuiz = async (text, numQuize = 5) => {
           }
         }
       }
-      console.log(question, option, currectanswer, explanation, difficulty);
 
       if (question && option.length === 4 && currectanswer) {
         questions.push({

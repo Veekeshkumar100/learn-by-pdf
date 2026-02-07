@@ -85,17 +85,25 @@ export const generateQuiz = async (req, res, next) => {
       document.extreactedText,
       parseInt(count),
     );
+    console.log("quize",quizeMcq);
 
     const quizSet = await Quizz.create({
       userId: req.user.id,
       documentId: document._id,
       title: document.title,
-      questions: quizeMcq,
+      questions: quizeMcq.map((c)=>({
+        questionText:c.question,
+        options:c.option.map(o=>o),
+        correctAnswer:c.currectanswer,
+        explanation:c.explanation,
+        difficulty:c.difficulty,
+
+      })),
       userAnswers: [],
       totalQuestions: quizeMcq.length,
       score: 0,
     });
-    if (quizSet) {
+    if (!quizSet) {
       res.status(404).json({
         success: false,
         message: "quizset is not set",
@@ -301,8 +309,6 @@ export const explainContext=async(req,res,next)=>{
     }
 }
 
-
-
 export const getChatHistory=async(req,res,next)=>{
     try{
       const {documentId}=req.body;
@@ -315,10 +321,10 @@ export const getChatHistory=async(req,res,next)=>{
       });
     }
       const chatHistary= await ChatHistory.findOne({
-        userId:res.user.id,
+        // userId:res.user.id,
         documentId:documentId,
       }).select('message'); //ony retreiwing the message array
-
+     
       if(!chatHistary){
         return res.status(401).json({
         success: true,
