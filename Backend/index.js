@@ -9,6 +9,7 @@ import router from "./route/authRout.js";
 import DocumentRout from "./route/documentRout.js";
 import FlashCardRouts from "./route/flashRout.js";
 import AiRout from "./route/aiRout.js";
+import QuizRout from "./route/quizRout.js";
 dotenv.config();
 const app = express();
 app.use(
@@ -31,6 +32,7 @@ app.use("/api/v2/documets", DocumentRout);
 app.use("/api/v1/users", router);
 app.use("/api/v1/flashcard", FlashCardRouts);
 app.use("/api/v1/ai", AiRout);
+app.use("/api/v1/quizz", QuizRout);
 //404 handler
 app.use((req, res, next) => {
   res

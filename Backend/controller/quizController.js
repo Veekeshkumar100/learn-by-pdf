@@ -1,9 +1,9 @@
-import { response } from "express";
 import { Quizz } from "../model/qizzs.js";
 
 export const getAllQuize = async (req, res, next) => {
   try {
-    const { documentId } = req.body;
+    const  documentId  = req.params.documentId;
+    console.log("id",documentId)
     if (!documentId) {
       return res.status(401).json({
         success: true,
@@ -35,9 +35,7 @@ export const getAllQuize = async (req, res, next) => {
     console.log("error while fetching data from databse", error);
   }
 };
-
 //get a single quizes by id
-
 export const getQuize = async (req, res, next) => {
   try {
     const quizes = await Quizz.findOne({
@@ -53,6 +51,8 @@ export const getQuize = async (req, res, next) => {
       });
     }
 
+ console.log("qz",quizes)
+
     res.status(200).json({
       success: true,
       message: "quizes found succesfully",
@@ -62,7 +62,6 @@ export const getQuize = async (req, res, next) => {
     console.log("error while fetching data from databse", error);
   }
 };
-
 export const submitequizesAnswer = async (req, res, next) => {
   try {
     const { answers } = req.body;
@@ -86,8 +85,9 @@ export const submitequizesAnswer = async (req, res, next) => {
         _id: req.params.id,
         userId: req.user.id,
       });
-
-       if(!quizes.completedAt){
+       
+      
+       if(quizes.completedAt){
          return res.status(401).json({
         success: false,
         message: "quiz is alreadt completed",
@@ -95,13 +95,20 @@ export const submitequizesAnswer = async (req, res, next) => {
       });
        }
 
-      const currectCount = 0;
-      const userAnswers=[];
+      let currectCount = 0;
+      let userAnswers=[];
        answers.forEach(answer => {
      const { questionIndex, Selectedanswer } = answer;
-        const question = quizes.questions[questionIndex];
-        const isCorrect = Selectedanswer === question.correctAnswer;
+        console.log(questionIndex, Selectedanswer);
+        const question = quizes.questions[questionIndex];  
+        console.log("selec",typeof Selectedanswer);
+        console.log("question.corr",typeof question.correctAnswer.replace(/[\[\]"]/g, ""));
+     
+
+        const isCorrect =  Selectedanswer === question.correctAnswer.replace(/[\[\]"]/g, "");
+        console.log("iscirrect",isCorrect);
         if(isCorrect) currectCount++;
+        
         userAnswers.push({
             questionIndex:questionIndex,
             selectedOption:Selectedanswer,
@@ -109,7 +116,7 @@ export const submitequizesAnswer = async (req, res, next) => {
             answeredAt: new Date(),
         })
       });
-      const score = (quizes.questions.length / quizes.totalQuestions) *100;
+      const score = (currectCount / quizes.totalQuestions) *100;
       quizes.userAnswers=userAnswers;
       quizes.score=score;
       quizes.completedAt=new Date();
@@ -133,8 +140,6 @@ export const submitequizesAnswer = async (req, res, next) => {
     console.log(error);
   }
 };
-
-
 export const detailtedResult = async(req,res,next)=>{
     try{
         const quizes = await Quizz.findOne({
@@ -150,7 +155,7 @@ export const detailtedResult = async(req,res,next)=>{
       });
     }
 
-       if(quizes.completedAt){
+       if(!quizes.completedAt){
          return res.status(401).json({
         success: false,
         message: "quiz is not completed",
@@ -194,9 +199,7 @@ export const detailtedResult = async(req,res,next)=>{
     }
 }
 
-
-
-export const deleteQuery=async(req,res,next)=>{
+export const deleteQuiz=async(req,res,next)=>{
     try{
         const quizes = await Quizz.findOne({
         _id: req.params.id,

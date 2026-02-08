@@ -64,14 +64,14 @@ export const generateFlashCardfromAi = async (text, count = 10) => {
 export const generateQuiz = async (text, numQuize = 5) => {
   const prompt = `generate exactly ${numQuize} multiple choice question from the following text.
     Formart :
-    Q:[Question]
-    Q1:[option1]
-    Q2:[option2]
-    Q3:[option3]
-    Q4:[option4]
-    c:[currect option- exactly as written above]
-    E:[Brief explanation]
-    D:[difficulty:easy,midium, or hard]
+    Q:["Question"]
+    Q1:["option1"]
+    Q2:["option2"]
+    Q3:["option3"]
+    Q4:["option4"]
+    c:["currect option exactly as written above"]
+    E:["Brief explanation"]
+    D:["difficulty:easy,midium, or hard"]
    
        seperate each flashcard with "---"
 

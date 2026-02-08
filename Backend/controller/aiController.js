@@ -112,7 +112,7 @@ export const generateQuiz = async (req, res, next) => {
     }
     res.status(201).json({
       success: true,
-      message: "Flashcard set is generated successfully",
+      message: "quizset is generated successfully",
       data: quizSet,
       status: 201,
     });

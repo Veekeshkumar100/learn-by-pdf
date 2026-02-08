@@ -95,7 +95,6 @@ try {
 
    FlashCardSet.cards[cardIndex].lastReviewed= new Date();
    FlashCardSet.cards[cardIndex].reviewCount +=1;
-
   await FlashCardSet.save();
 
   res.status(200).json({

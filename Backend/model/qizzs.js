@@ -5,6 +5,7 @@ const quizSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true,
+        
     },
   title:{
         type: String,
@@ -74,6 +75,6 @@ const quizSchema = new mongoose.Schema({
         default: null
     },
 }, { timestamps: true });
-quizSchema.index({ userId: 1, documentId: 1 }, { unique: true });
+quizSchema.index({ userId: 1, documentId: 1 });
 export const Quizz = mongoose.model('Quizz', quizSchema);
     
