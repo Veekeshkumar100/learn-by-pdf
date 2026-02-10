@@ -28,7 +28,7 @@ const __dirname = path.dirname(__filename);
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(errorHandler);
-app.use("/api/v2/documets", DocumentRout);
+app.use("/api/v1/documets", DocumentRout);
 app.use("/api/v1/users", router);
 app.use("/api/v1/flashcard", FlashCardRouts);
 app.use("/api/v1/ai", AiRout);
