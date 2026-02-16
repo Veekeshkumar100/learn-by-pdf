@@ -54,42 +54,53 @@ export const registerUser =async(req,res,next)=>{
 }
 export const loginUser =async(req,res,next) => {
     try{
+    
         const {email,password} = req.body;
         //check if user exists
-        console.log(req.body);
-        if(!password || ! email){
+        console.log(req.body)
+      
+        if(!password && ! email){
             return res.status(401).json({
                 succes:false,
-                error:'all the field are required',
+                error:'Both the fields are required',
                 statusCode:401,
             })
         }
 
         const userExist= await User.findOne({email});
+    
         if(!userExist){
           return res.status(401).json({
             succes:false,
-            error:'user is not exist',
+            error:'user is not exist with this email',
             statusCode:401,
           })
         }
 
-        const isPasswordCorrect=userExist.matchPassword(password);
+        console.log(userExist);
+        if (!userExist.password) {
+  return res.status(400).json({ message: "Password not set" });
+}
+
+        const isPasswordCorrect= await userExist.matchPassword(password);
        
         if(!isPasswordCorrect){
-            return res.status.json({
+            return res.status(401).json({
                 success:false,
                 error:"password is not currect",
                 stautusCode:401,
             })
         }
-
-         res.status(401).json({
+     const token=generateToken(userExist._id);
+         res.status(200).json({
             success:true,
             status:200,
-            message:'user loged in succesfully'
+            message:'user loged in succesfully',
+            user:userExist,
+            token,
         })
     }catch(error){
+        console.log(error)
         next(error);
     }
 }

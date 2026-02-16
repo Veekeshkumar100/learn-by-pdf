@@ -10,11 +10,12 @@ import DocumentRout from "./route/documentRout.js";
 import FlashCardRouts from "./route/flashRout.js";
 import AiRout from "./route/aiRout.js";
 import QuizRout from "./route/quizRout.js";
+import DAskBordRout from "./route/daskbordRout.js";
 dotenv.config();
 const app = express();
 app.use(
   cors({
-    origin: "*",
+    origin: "http://localhost:5173",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
@@ -33,6 +34,7 @@ app.use("/api/v1/users", router);
 app.use("/api/v1/flashcard", FlashCardRouts);
 app.use("/api/v1/ai", AiRout);
 app.use("/api/v1/quizz", QuizRout);
+app.use("/api/v1/daskbord", DAskBordRout);
 //404 handler
 app.use((req, res, next) => {
   res

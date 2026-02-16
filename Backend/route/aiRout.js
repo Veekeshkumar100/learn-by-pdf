@@ -11,4 +11,4 @@ AiRout.post("/generate-Chat",projectAuth,Chating)
 AiRout.post("/generate-Explaination",projectAuth,explainContext)
 AiRout.post("/generate-getchatHistory",getChatHistory)
 
-export default AiRout;``
+export default AiRout;

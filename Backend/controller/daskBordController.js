@@ -1,19 +1,21 @@
-import { FlashCard } from "../model/flaseCard";
-import { Quizz } from "../model/qizzs";
+import { Document } from "../model/document.js";
+import { FlashCard } from "../model/flaseCard.js";
+import { Quizz } from "../model/qizzs.js";
 
 
-const getDaskBord=async(req,res,next)=>{
+export const getDaskBord=async(req,res,next)=>{
     try {
      const userId =req.user.id;
-       const totalDocument= await Document.countDocuments({userId});  
+     console.log("user",userId);
+;       const totalDocument= await Document.countDocuments({userId});  
        const totalQuiz= await Quizz.countDocuments({userId}) ;
        const totolFlashCard= await FlashCard.countDocuments({userId});
        const completedQuizs = await Quizz.countDocuments({userId,completedAt:{$ne:null}});
      
        const flaseCardSet= await FlashCard.find({userId});
-       const totalFlashcard=0;
-       const reviewedFlashcard =0;
-       const starredFlashCard=0;
+       let totalFlashcard=0;
+       let reviewedFlashcard =0;
+       let starredFlashCard=0;
        
        flaseCardSet.forEach((set)=>{
          totalFlashcard=set?.cards.length;
@@ -33,7 +35,6 @@ const getDaskBord=async(req,res,next)=>{
        const recentDocument= await Document.find({userId})
        .sort({lastAccessed:-1})
        .limit(5)
-       .populate("documentId","title")
        .select("title fileName lastAccessed status");
 
 
@@ -47,7 +48,7 @@ const getDaskBord=async(req,res,next)=>{
             totalFlashcard,
             totalQuiz,
             completedQuizs,
-           totalFlashcard,
+           totolFlashCard,
          reviewedFlashcard ,
           starredFlashCard,
           averageScore,
@@ -58,19 +59,10 @@ const getDaskBord=async(req,res,next)=>{
             Quizzs:recentDocument,
         }
        })
-       
-
-       
-         
-
-
-
-
-
-
-
+  
 
     } catch (error) {
+      console.log("error while fetchimg daskbord data",error);
         
     }
 }

@@ -1,29 +1,34 @@
 import axios from "axios";
+import { axiosInstance } from "../utils/apiInstance.js";
 
-const BASE_URL='http//:localhost:300/api/v1/users';
 
-export const login =async(email,password)=>{
+const BASE_URL='http://localhost:3000/api/v1/users';
+
+export const loginUser =async(formData)=>{
     try{
-    const response = await axios.post(`${BASE_URL}/login`,{
-        email,
-        password,
-    })
+    const response = await axiosInstance.post('/v1/users/login',formData);
+
+    console.log(response);
     return response.data;
     }catch(error){
-        console.log(error);
+      if (error.response) {
+        return error.response.data;
+  } else {
+    console.log("Server not responding");
+  }
     }
 }
 
-export const register =async(email,password)=>{
+export const register =async(formData)=>{
     try{
-    const response = await axios.post(`${BASE_URL}/register`,{
-       username,
-       email,
-       password
-    })
+    const response = await axiosInstance.post(`${BASE_URL}/register`,formData)
     return response.data;
     }catch(error){
-        console.log(error);
+        if (error.response) {
+        return error.response.data;
+  } else {
+    console.log("Server not responding");
+  }
     }
 }
 

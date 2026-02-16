@@ -19,7 +19,6 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: [true, "Password is required"],
-      select: false,
     },
     profileImage: {
       type: String,
@@ -38,6 +37,7 @@ userSchema.pre("save", async function () {
 });
 
 userSchema.methods.matchPassword = async function (enteredPassword) {
-  return await bcrypt.compare(enteredPassword, this.password);
+  console.log("enetere",enteredPassword);
+  return await bcrypt.compare(enteredPassword, this.password);  
 };
 export const User = mongoose.model("User", userSchema);
