@@ -1,13 +1,15 @@
 
 
 import React, { useEffect, useState } from 'react'
+import { getDaskBord } from '../../services/dashBord'
 const DaskboardPage = () => {
   const [dashbordData,SetdashbordData]=useState('')
   const [loading,Steloading]=useState('')
 
        useEffect(()=>{
          const fatchDocumnetData=async()=>{
-          
+          const response= await getDaskBord();
+          console.log(response);
          }
        },[])
 

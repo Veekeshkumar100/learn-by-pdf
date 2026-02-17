@@ -41,21 +41,17 @@ const Sidebar = ({isSideBaropen,toggleSideBar}) => {
              <X size={22} className='md:hidden text-slate-' />
           </button>
    </div>
-
       <nav className='relative flex flex-col  items-center gap-2 mt-2 '>
-         
-         {navLinks.map((link)=>{
+         {navLinks.map((link,index)=>{
             return <div className=' '>
-              <NavLink to={`${link.to}` }  className={({isActive})=>`flex justify-center items-center  gap-2 w-60  font-semibold py-3.5 rounded-lg px-2 ${isActive ? " bg-linear-to-r  from-emerald-500 to-teal-200 text-white  shadow-lg shadow-slate-200/60 ":"text-slate-600 hover:bg-slate-100 hover:text-slate-900"}`}>
+              <NavLink key={index} to={`${link.to}` }  className={({isActive})=>`flex justify-center items-center  gap-2 w-60  font-semibold py-3.5 rounded-lg px-2 ${isActive ? " bg-linear-to-r  from-emerald-500 to-teal-200 text-white  shadow-lg shadow-slate-200/60 ":"text-slate-600 hover:bg-slate-100 hover:text-slate-900"}`}>
               <link.icon size={22}/>
               <p>{link.text}</p>
                 </NavLink>
                 <div className='border-b border-slate-100 pt-1 shadow-xl shadow-slate-500 backdrop-blur-2xl '></div>
             </div>
-
            })
            }
-          
           {/* logout */}
           <div className='group flex justify-center items-center   w-full py-2 text-center'>
             <button className='flex  gap-2 font-semibold text-slate-700  group-hover:scale-105' onClick={handleLogout}>
