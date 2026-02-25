@@ -10,7 +10,7 @@ const generateToken = (id) => {
 
 export const registerUser =async(req,res,next)=>{
     try{
-        console.log(req.body);
+      
         const {username,email,password} = req.body;
         //check if user exists
         const userExist= await User.findOne({email});
@@ -57,7 +57,7 @@ export const loginUser =async(req,res,next) => {
     
         const {email,password} = req.body;
         //check if user exists
-        console.log(req.body)
+       
       
         if(!password && ! email){
             return res.status(401).json({
@@ -77,7 +77,7 @@ export const loginUser =async(req,res,next) => {
           })
         }
 
-        console.log(userExist);
+       
         if (!userExist.password) {
   return res.status(400).json({ message: "Password not set" });
 }
@@ -137,7 +137,7 @@ export const getProfile =async (req,res,next)=>{
 export const updateProfile =async(req,res,next)=>{
     try{
       const {username,email}= req.body;
-      console.log(req.body);
+      
       const user = await User.findById(req.user._id);
 
       if(username) user.username=username;
@@ -171,7 +171,7 @@ export const changePassword =async(req,res,next)=>{
             )
         }
         const user = await User.findById(req.user._id).select("+password");
-        console.log(user);
+     
         const iscurrentPasswordCurrect= user.matchPassword(currentPassword);
         if(!iscurrentPasswordCurrect){
           return res.status(401).json({

@@ -11,6 +11,7 @@ import DocumentListPage from "./pages/document/documentListPage";
 import DaskboardPage from "./pages/flashcard/DaskboardPage.jsx";
 import ProtectedRoute from "./component/protectedRout/ProtectedRout";
 import { useAuth } from "./context/AuthContext";
+import Applayout from "./component/layout/Applayout.jsx";
 
 function App() {
   const {isAuthenticat,lodding} =useAuth();
@@ -24,9 +25,8 @@ function App() {
   }
   return (
     <Routes>
-      <Route path="/" element={<h1>Home Page</h1>} />
-      {/* <Route
-        path="/dashboard"
+      {/* <Route path="/" element={<h1>Home Page</h1>} /> */}
+      <Route
         element={
           isAuthenticat ? (
             <Navigate to="/dashboard"  />
@@ -34,9 +34,10 @@ function App() {
             <Navigate to="/login"  />
           )
         }
-      /> */}
+      />
       <Route path="/login" element={<Login/>} />
       <Route path="/register" element={<Register/>} />
+        <Route path="/" element={<Applayout/>}/>
       <Route element={<ProtectedRoute />}>
         <Route path="/dashboard" element={<DaskboardPage/>}/>
         <Route path="/documents" element={<DocumentListPage />} />

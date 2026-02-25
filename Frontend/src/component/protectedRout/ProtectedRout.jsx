@@ -3,6 +3,7 @@ import {Navigate} from "react-router-dom";
 import { Outlet } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import Applayout from '../layout/Applayout';
+import Loaderforloading from '../../utils/loader';
 
 export default function ProtectedRoute( ) {
   const {isAuthenticat,loading}=useAuth()
@@ -10,9 +11,7 @@ export default function ProtectedRoute( ) {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-screen">
-        <p>Loading...</p>
-      </div>
+     <Loaderforloading/>
     )
   }
   if (!isAuthenticat) {

@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
+import { Outlet } from "react-router-dom";
 
 const Applayout = ({ children }) => {
   const [isSideBaropen, SetisSideBaropen] = useState(true);
@@ -11,31 +12,32 @@ const Applayout = ({ children }) => {
   };
 
   return (
-    <div className="flex min-h-screen  bg-neutral-50 text-neutral-900">
+    <div className=" flex min-h-screen  bg-neutral-50 text-neutral-900">
       
-      {/* Sidebar */}
-     
-        <Sidebar
+  
+
+        <Sidebar 
           isSideBaropen={isSideBaropen}
           toggleSideBar={toggleSideBar}
-        />
+          />
+      
    
+         
 
       {/* Main Section */}
-      <div className="flex flex-col flex-1 w-full">
-        
+      <div className=" md:pl-64 flex flex-col flex-1 overflow-hidden ">
+          
         {/* Header */}
-        <div className="sticky top-0 z-30 bg-white shadow-sm">
+        
           <Header toggleSideBar={toggleSideBar} />
-        </div>
-
-        {/* Page Content */}
-        <main className="flex-1 p-6 mt-2 overflow-y-auto">
-          {children}
+           <main className="flex-1 p-6 mt-10  overflow-y-auto">
+          <Outlet/>
         </main>
 
+        {/* Page Content */}
+      
       </div>
-    </div>
+ </div>
   );
 };
 

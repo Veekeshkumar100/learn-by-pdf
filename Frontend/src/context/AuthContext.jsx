@@ -1,8 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext();
-
-
 export const useAuth =()=>{
 try{
   const context = useContext(AuthContext);
@@ -10,7 +8,6 @@ try{
 }catch (error){
 console.error(error.responce ||"failed to fetch");
 }
-
 }
 
 
@@ -39,11 +36,7 @@ export const AuthProvider =({children})=>{
   useEffect(()=>{
      checkAuthenticatUser();
     },[])
-
-
-
-     const login=(user,token)=>{
-      console.log(user,token);
+const login=(user,token)=>{
     localStorage.setItem("user",JSON.stringify(user));
     localStorage.setItem("token",token);
       setIsAuthenticat(true);

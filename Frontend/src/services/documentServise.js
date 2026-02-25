@@ -1,8 +1,9 @@
 import axios from "axios";
-const BASE_URL='http//:localhost:300/api/v1/documets';
+import { axiosInstance } from "../utils/apiInstance";
+
 export const uploadDocument =async(formData)=>{
     try{
-    const response = await axios.post(`${BASE_URL}/uploads`,formData,{
+    const response = await axiosInstance.post(`${BASE_URL}/uploads`,formData,{
        headers:{
         "Content-Type":"multipart/form-data"
        }
@@ -14,7 +15,7 @@ export const uploadDocument =async(formData)=>{
 }
 export const getDocuments =async()=>{
     try{
-    const response = await axios.get(`${BASE_URL}/`)
+    const response = await axiosInstance.get(`/v1/documets`)
     return response.data?.data;
     }catch(error){
              throw error.response?.data || {message : "Failed to get the documents"}
@@ -33,7 +34,8 @@ export const getDocumentbyid =async(id)=>{
 }
 export const deletetDocumentbyid =async(id)=>{
     try{
-    const response = await axios.delete(`${BASE_URL}/${id}`)
+        
+    const response = await axiosInstance.delete(`/v1/${id}/delete`)
     return response.data;
     }catch(error){
              throw error.response?.data || {message : "Failed to delete the document"}

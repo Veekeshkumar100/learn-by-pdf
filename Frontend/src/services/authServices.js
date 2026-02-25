@@ -5,6 +5,7 @@ import { axiosInstance } from "../utils/apiInstance.js";
 const BASE_URL='http://localhost:3000/api/v1/users';
 
 export const loginUser =async(formData)=>{
+    console.log(formData);
     try{
     const response = await axiosInstance.post('/v1/users/login',formData);
 
@@ -12,6 +13,7 @@ export const loginUser =async(formData)=>{
     return response.data;
     }catch(error){
       if (error.response) {
+        console.log(error.response);
         return error.response.data;
   } else {
     console.log("Server not responding");

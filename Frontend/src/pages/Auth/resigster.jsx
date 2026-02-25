@@ -56,7 +56,7 @@ try {
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-gradient-to-br from-slate-50 via-white to-slate-50">
-      <div className="w-sm   max-w-md bg-white rounded-lg shadow-lg p-8 m-5">
+      <div className="w-full   max-w-md bg-white rounded-lg shadow-lg p-8 m-5">
         {/* Header */}
         <div className=" flex flex-col items-center text-center mb-6">
           <div className="text-white  bg-emerald-500 p-4 rounded-lg">

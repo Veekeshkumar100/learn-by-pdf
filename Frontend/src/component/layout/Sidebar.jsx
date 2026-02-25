@@ -4,7 +4,7 @@ import { BrainCircuit,LayoutDashboard,FileText,X, User, BookOpen, LogOut } from 
 const Sidebar = ({isSideBaropen,toggleSideBar}) => {
       const {logout}=useAuth()
       const navigate =useNavigate();
-
+        console.log(isSideBaropen)
       const handleLogout=()=>{
            logout()
            navigate('/logout');
@@ -25,11 +25,11 @@ const Sidebar = ({isSideBaropen,toggleSideBar}) => {
         ]
   
       
-
+ 
   return (
-    // <div className='flex flex-col gap-2'>
+  
 
-      <aside className={`fixed  top-0 left-0 flex flex-col  backdrop-blur-2xl min-h-full max-h-full w-64 bg-white/80 border-r border-slate-200/50  z-50 md:relative md:shrink-0 md:flex  md:w-64 transition-transform duration-300 ease-in-out overflow-hidden ${isSideBaropen?"transtale-x-0":"-translate-x-full"}`}>
+      <aside className={`fixed top-0 left-0 z-99  h-screen w-64  flex flex-col  backdrop-blur-2xl  bg-white/80  border-r border-slate-200/50  md:shrink-0  md:w-64 transition-transform duration-300 ease-in-out md:translate-x-0  ${isSideBaropen?"transtale-x-0":"-translate-x-full"} `}>
         <div className='flex justify-between h-16 px-5 items-center   w-64 backdrop-blur-lg border-b border-slate-200/60'>
           <div className=' flex items-center gap-3 '>
             <div className='flex items-center justify-center p-2 text-white rounded-lg bg-emerald-500'>
@@ -43,7 +43,7 @@ const Sidebar = ({isSideBaropen,toggleSideBar}) => {
    </div>
       <nav className='relative flex flex-col  items-center gap-2 mt-2 '>
          {navLinks.map((link,index)=>{
-            return <div className=' '>
+            return <div className=' ' key={index}>
               <NavLink key={index} to={`${link.to}` }  className={({isActive})=>`flex justify-center items-center  gap-2 w-60  font-semibold py-3.5 rounded-lg px-2 ${isActive ? " bg-linear-to-r  from-emerald-500 to-teal-200 text-white  shadow-lg shadow-slate-200/60 ":"text-slate-600 hover:bg-slate-100 hover:text-slate-900"}`}>
               <link.icon size={22}/>
               <p>{link.text}</p>
@@ -61,7 +61,7 @@ const Sidebar = ({isSideBaropen,toggleSideBar}) => {
           </div>
       </nav>
       </aside>
-      //  </div> 
+      
   
   )
 }

@@ -6,8 +6,8 @@ import { Quizz } from "../model/qizzs.js";
 export const getDaskBord=async(req,res,next)=>{
     try {
      const userId =req.user.id;
-     console.log("user",userId);
-;       const totalDocument= await Document.countDocuments({userId});  
+       console.log("id",userId);
+     const totalDocument= await Document.countDocuments({userId});  
        const totalQuiz= await Quizz.countDocuments({userId}) ;
        const totolFlashCard= await FlashCard.countDocuments({userId});
        const completedQuizs = await Quizz.countDocuments({userId,completedAt:{$ne:null}});
@@ -36,8 +36,10 @@ export const getDaskBord=async(req,res,next)=>{
        .sort({lastAccessed:-1})
        .limit(5)
        .select("title fileName lastAccessed status");
-
-
+        
+      
+    
+       
 
        const studyStack = Math.floor(Math.random()*7)+1; //mock data
 
@@ -55,8 +57,9 @@ export const getDaskBord=async(req,res,next)=>{
         studyStack
         },
         recentActivity:{
-            documents:recentQuiz,
-            Quizzs:recentDocument,
+            documents:recentDocument,
+            Quizzs:recentQuiz,
+            
         }
        })
   
