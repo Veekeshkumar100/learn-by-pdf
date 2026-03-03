@@ -6,12 +6,12 @@ import QuizzerTakePage from "./pages/quizzers/quizzerTakPage";
 import QuizzerResultPage from "./pages/quizzers/quizzerResultPage";
 import FlashCardListPage from "./pages/flashcard/fllashCardListPage";
 import FlashCardsPage from "./pages/flashcard/flashCArsPage";
-import DocumentDetailPage from "./pages/document/documentDetailPage";
 import DocumentListPage from "./pages/document/documentListPage";
 import DaskboardPage from "./pages/flashcard/DaskboardPage.jsx";
 import ProtectedRoute from "./component/protectedRout/ProtectedRout";
 import { useAuth } from "./context/AuthContext";
 import Applayout from "./component/layout/Applayout.jsx";
+import DocumentsDetailPage from "./pages/document/documentsDetailPage.jsx";
 
 function App() {
   const {isAuthenticat,lodding} =useAuth();
@@ -25,23 +25,24 @@ function App() {
   }
   return (
     <Routes>
-      {/* <Route path="/" element={<h1>Home Page</h1>} /> */}
-      <Route
-        element={
-          isAuthenticat ? (
-            <Navigate to="/dashboard"  />
-          ) : (
-            <Navigate to="/login"  />
-          )
-        }
-      />
+   
+       <Route
+  path="/"
+  element={
+    isAuthenticat ? (
+      <Navigate to="/dashboard" replace />
+    ) : (
+      <Navigate to="/login" replace />
+    )
+  }
+/>
       <Route path="/login" element={<Login/>} />
       <Route path="/register" element={<Register/>} />
         <Route path="/" element={<Applayout/>}/>
       <Route element={<ProtectedRoute />}>
         <Route path="/dashboard" element={<DaskboardPage/>}/>
         <Route path="/documents" element={<DocumentListPage />} />
-        <Route path="/documents/:id" element={<DocumentDetailPage />} />
+        <Route path="/documents/:id" element={<DocumentsDetailPage />} />
         <Route path="/documents/:id/flashcards" element={<FlashCardsPage />} />
         <Route path="/flashCard" element={<FlashCardListPage />} />
         <Route

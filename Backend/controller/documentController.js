@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import { Document } from "../model/document.js";
 import  {textExchangFromPdf}  from "../utility/pdfParser.js";
 import { chunkText } from "../utility/testChunker.js";
+import { FlashCard } from "../model/flaseCard.js";
+import { Quizz } from "../model/qizzs.js";
 // import { uploadDir } from "../config/multer.js";
 
 
@@ -53,9 +55,8 @@ export const uploadPdf = async (req, res, next) => {
     }
 
     //construct the url for the uploadedb pdf
-
-    // const basrUrl = `http:localhost:${process.env.PORT || 8000}`;
-    // const fileUrl = `${basrUrl}/uploads//${req.file.filename}`;
+    const basrUrl = `http://localhost:${process.env.PORT || 8000}`;
+    const fileUrl = `${basrUrl}/uploads/${req.file.filename}`;
     const filePath = req.file.path;
   
 
@@ -63,7 +64,7 @@ export const uploadPdf = async (req, res, next) => {
       userId: req.user._id,
       title: title,
       fileName: req.file.originalname,
-      filePath: filePath, //store the url instetd of the local path
+      filePath: fileUrl, //store the url instetd of the local path
       fileSize: req.file.size,
       status: "processing",
     });
@@ -137,7 +138,6 @@ export const getDocuments = async (req, res, next) => {
 
 export const getDocument = async (req, res, next) => {
   try {
-
     const document = await Document.findOne({
       _id: req.params.id,
       userId: req.user._id,
@@ -150,8 +150,8 @@ export const getDocument = async (req, res, next) => {
     }
 
     //get count of assosiat flashcard and quizzs
-     const flashCardCount= await FlashCard.countDocument({documentId:document._id,userId:req.user._id});
-     const quizzCount= await Quiz.countDocument({documentId:document.id,userId:req.user._id});
+     const flashCardCount= await FlashCard.countDocuments({documentId:document._id,userId:req.user._id});
+     const quizzCount= await Quizz.countDocuments({documentId:document.id,userId:req.user._id});
 
     document.lastAccessed = Date.now();
     await document.save();
@@ -171,11 +171,11 @@ export const getDocument = async (req, res, next) => {
 
 export const deleteDocument = async (req, res, next) => {
   try {
-    console.log("bk",req.params.id);
     const document = await Document.findOne({
       _id: req.params.id,
       userId: req.user._id,
     });
+   
     if (!document) {
       return res.status(401).json({
         success: false,
@@ -186,7 +186,8 @@ export const deleteDocument = async (req, res, next) => {
     await fs.unlink(document.filePath).catch(() => {});
 
     //delete file from the database
-    await docunet.deleteOne();
+    await document.deleteOne();
+      
 
     res.status(200).json({
       success: true,

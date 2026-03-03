@@ -41,6 +41,7 @@ export  const getAllFlashCardSets=async(req,res,next)=>{
 try {
    const FlashCardSet= await FlashCard.find({
     userId:new mongoose.Types.ObjectId(req.user.id),
+    documentId:req.body.docunemtId,
    }).populate("documentId","title ")
    .sort({createdAt:-1});
 

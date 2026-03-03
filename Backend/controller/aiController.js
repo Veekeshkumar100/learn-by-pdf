@@ -5,10 +5,12 @@ import { FlashCard } from "../model/flaseCard.js";
 import { Quizz } from "../model/qizzs.js";
 import { findRelevantChunks } from "../utility/testChunker.js";
 import { ChatHistory } from "../model/chatHistary.js";
+
+
 export const generateFlashCard = async (req, res, next) => {
   try {
-    console.log(req.body);
     const { documentId, count = 10 } = req.body;
+    console.log("dc",documentId);
     if (!documentId) {
       return res.status(401).json({
         success: true,
@@ -176,6 +178,7 @@ export const generatDocunetSummary = async (req, res, next) => {
 export const Chating = async (req, res, next) => {
   try {
     const { question, documentId } = req.body;
+    console.log(question,documentId);
     if (!documentId) {
       return res.status(401).json({
         success: true,
@@ -235,7 +238,7 @@ export const Chating = async (req, res, next) => {
         relevantChunk: [],
       },
       {
-        role: "user",
+        role: "assistant",
         content: chatAnwer,
         timeStamp: new Date(),
         relevantChunk: indexecs,
@@ -262,6 +265,7 @@ export const Chating = async (req, res, next) => {
 export const explainContext=async(req,res,next)=>{
     try {
         const { documentId,concept } = req.body;
+        console.log(documentId,concept);
     if (!documentId) {
       return res.status(401).json({
         success: true,
@@ -282,7 +286,7 @@ export const explainContext=async(req,res,next)=>{
     }
      const relevantChunk = findRelevantChunks(document.chunk, concept, 4);
     const context = relevantChunk.map((c) => c.content).join("\n\n");
-   console.log("context",context);
+  
     const explaination = await geminiService.explainConcept(
       concept,
       context
@@ -312,7 +316,7 @@ export const explainContext=async(req,res,next)=>{
 export const getChatHistory=async(req,res,next)=>{
     try{
       const {documentId}=req.body;
-      console.log(documentId);
+      console.log("vk",documentId);
      if (!documentId) {
       return res.status(401).json({
         success: true,
@@ -321,10 +325,10 @@ export const getChatHistory=async(req,res,next)=>{
       });
     }
       const chatHistary= await ChatHistory.findOne({
-        // userId:res.user.id,
+        // userId:req.user.id,
         documentId:documentId,
-      }).select('message'); //ony retreiwing the message array
-     
+      }) //ony retreiwing the message array
+        
       if(!chatHistary){
         return res.status(401).json({
         success: true,

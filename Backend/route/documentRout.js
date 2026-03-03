@@ -9,6 +9,6 @@ const DocumentRout= epxress.Router()
 DocumentRout.post("/uploads",projectAuth, upload.single("pdf"),uploadPdf)
 DocumentRout.get("/",projectAuth,getDocuments);
 DocumentRout.get("/:id",projectAuth,getDocument);
-DocumentRout.delete("/:id/delete",projectAuth,deleteDocument);
+DocumentRout.delete("/:id",projectAuth,deleteDocument);
 
 export default DocumentRout;

@@ -5,6 +5,7 @@
   --font-family: "Urbanist", sans-serif;
    --breakpoint-3xl: 1920px;
    --color-primary: #FF9324;
+   --scroll-behavior: smooth;
 }
 
 @layer base {

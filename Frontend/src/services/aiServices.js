@@ -1,12 +1,15 @@
 import axios from "axios";
+import { axiosInstance } from "../utils/apiInstance";
 
-const BASE_URL='http//:localhost:300/api/v1/ai';
 
-export const generateFlashCards =async(documentId,option)=>{
+
+export const generateFlashCards =async(documentId)=>{
     try{
-    const response = await axios.post(`${BASE_URL}/generate-FlashCard`,{
+        console.log(documentId)
+        
+    const response = await axiosInstance.post(`/v1/ai/generate-FlashCard`,{
        documentId,
-       ...option,
+     
     })
     return response.data;
     }catch(error){
@@ -15,7 +18,7 @@ export const generateFlashCards =async(documentId,option)=>{
 }
 export const generateQuizs =async(documentId,option)=>{
     try{
-    const response = await axios.post(`${BASE_URL}/generate-Quiz`,{
+    const response = await axios.post(`/v1/ai/generate-Quiz`,{
        documentId,
        ...option,
     })
@@ -24,9 +27,9 @@ export const generateQuizs =async(documentId,option)=>{
         console.log(error);
     }
 }
-export const generateDocumentSummary =async(documentId,option)=>{
+export const generateDocumentSummary =async(documentId)=>{
     try{
-    const response = await axios.post(`${BASE_URL}/generate-Summary`,{
+    const response = await axiosInstance.post(`/v1/ai/generate-Summary`,{
        documentId,
     })
     return response.data;
@@ -34,12 +37,13 @@ export const generateDocumentSummary =async(documentId,option)=>{
         console.log(error);
     }
 } 
-export const Chating =async(documentId,meggase)=>{
+export const Chating =async(meggase,documentId)=>{
     try{
-    const response = await axios.post(`${BASE_URL}/generate-Chat`,{
+    const response = await axiosInstance.post(`/v1/ai/generate-Chat`,{
         question:meggase,
-       documentId,
+        documentId:documentId,
     })
+
     return response.data;
     }catch(error){
         console.log(error);
@@ -47,23 +51,24 @@ export const Chating =async(documentId,meggase)=>{
 }
 export const explainContext =async(documentId,concept)=>{
     try{
-    const response = await axios.post(`${BASE_URL}/generate-Explaination`,{
+    const response = await axiosInstance.post(`v1/ai/generate-Explaination`,{
         documentId,
        concept,
     })
     return response.data;
     }catch(error){
-        console.log(error);
+        console.log(error.meggase || "fetched request failed");
     }
 }
 
 
 
-export const generateChatHistory=async()=>{
+export const generateChatHistory=async(documentId)=>{
       try{
-    const response = await axios.post(`${BASE_URL}/generate-getchatHistory`,{
+    const response = await axiosInstance.post(`/v1/ai/generate-getchatHistory`,{
         documentId,
     })
+ 
     return response.data;
     }catch(error){
         console.log(error);

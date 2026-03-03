@@ -4,7 +4,6 @@ import { BrainCircuit,LayoutDashboard,FileText,X, User, BookOpen, LogOut } from 
 const Sidebar = ({isSideBaropen,toggleSideBar}) => {
       const {logout}=useAuth()
       const navigate =useNavigate();
-        console.log(isSideBaropen)
       const handleLogout=()=>{
            logout()
            navigate('/logout');

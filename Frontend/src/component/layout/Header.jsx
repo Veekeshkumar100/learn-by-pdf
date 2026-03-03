@@ -1,7 +1,11 @@
 import {Bell, Menu, User} from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+
 const Header = ({toggleSideBar}) => {
+
     const {user}=useAuth();
+     const users= JSON.parse(localStorage.getItem("user"));
+     console.log(users);
   return (
 
 
@@ -42,11 +46,12 @@ const Header = ({toggleSideBar}) => {
             <div className=''>
                 <div className=' flex-1 flex justify-center items-center gap-2 '>
                     <div className='bg-emerald-500 p-2 rounded-lg text-white hover:bg-emerald-400'>
+
                         <User strokeWidth={2} size={22} />
                     </div>
                     <div className='text-[13px] flex flex-col'>
-                        <p>{user?.username || "User"}</p>
-                        <p>{user?.email || "email"}</p>
+                        <p>{user ||users?.username || "User"}</p>
+                        <p>{user||users?.email || "email"}</p>
                     </div>
                 </div>
 

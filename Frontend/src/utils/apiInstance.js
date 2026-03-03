@@ -25,7 +25,7 @@ axiosInstance.interceptors.request.use((config)=>{
 
 
 axiosInstance.interceptors.response.use(
-    (response)=>{
+  (response)=>{
    return response;
     }, 
 (error)=>{

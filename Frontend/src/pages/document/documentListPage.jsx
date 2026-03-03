@@ -9,35 +9,35 @@ import Button from "../../component/common/button.jsx";
 
 import {FileText, Plus, Upload, X} from "lucide-react"
 import Spinner from "../../component/common/spinar.jsx";
-import DocumentCard from "./documentDetailPage.jsx";
-import { space } from "postcss/lib/list";
+
+
+import { useNavigate } from "react-router-dom";
+import DocumentCard from "./DocumentCard.jsx";
 const DocumentListPage = () => {
+  const navigate= useNavigate();
   const [documents, setDocuments] = useState("");
-  const [loading, setLoading] = useState(null);
+  const [loading, SetLoading] = useState(null);
 
   //state for uploading document
   const [isUploadModelOpen, setisUploadModelOpen] = useState(false);
   const [uploadFile, setUploadFile] = useState(null);
   const [uploadTitle, setUploadTitle] = useState("");
   const [uploading, setupLoading] = useState(null);
-
-  //delete documentment
-  const [selectedDoc, setSelectedDoc] = useState(null);
-  const [isDeletedModelOpen, setisDeletedModelOpen] = useState(false);
+  // delete documentment
 
   //function for uploading document
   const fetchDocument = async () => {
-    setLoading(true);
+    SetLoading(true);
     try {
       const response = await getDocuments();
-      console.log(response);
+     
       setDocuments(response);
-      setLoading(false);
+      SetLoading(false);
     } catch (error) {
       toast.error("Failed to fetched document ");
       console.log(error);
     } finally {
-      setLoading(false);
+      SetLoading(false);
     }
   };
   useState(() => {
@@ -45,7 +45,8 @@ const DocumentListPage = () => {
   }, []);
 
   const handelFielChange = (e) => {
-    const file = e.target.file[0];
+    const file = e.target.files[0];
+    console.log(file);
     if (file) {
       setUploadFile(file);
       setUploadTitle(file.name.replace(/\.[^/.]+$/, ""));
@@ -55,49 +56,60 @@ const DocumentListPage = () => {
   //handle upload document
   const handleUplaodDoc = async (e) => {
     e.preventDefault();
-    if (!uploadFile || uploadTitle) {
+    if (!uploadFile || !uploadTitle) {
       toast.error("must provid file and title");
       return;
     }
     setupLoading(true);
     const formData = new FormData();
-    formData.append("file", uploadFile);
+    formData.append("pdf", uploadFile);
     formData.append("title", uploadTitle);
     try {
-      response = await uploadDocument(formData);
+      const response = await uploadDocument(formData);
+      console.log(response);
       toast.success("File uploaded soccessfully");
+      navigate('/documents')
       setisUploadModelOpen(false);
       setUploadFile(null);
       setUploadTitle("");
-      setLoading(true);
+      SetLoading(true);
       fetchDocument();
     } catch (error) {
+      console.log(error);
       toast.success("Filed to uploaded document");
     } finally {
       setupLoading(false);
     }
   };
 
-  const handleDeleteRequest = (doc) => {
-    if (doc) {
-      setSelectedDoc(doc);
-      setisDeletedModelOpen(true);
-    }
-  };
 
   const handleConfirmDelete = async (doc) => {
-     handleDeleteRequest(doc)
     try {
-      const responce = await deletetDocumentbyid(selectedDoc._id);
-      toast.success(`${selectedDoc.title} deleted`);
-      setisDeletedModelOpen(true);
-      setSelectedDoc(null);
-      setDocuments(documents.filter((d)=>d._id!==selectedDoc._id));
+      SetLoading(true)
+      const responce = await deletetDocumentbyid(doc._id);
+      navigate('/documents')
+      if(responce){
+        toast.success(`${doc.title} deleted`);
+      }else{
+        toast.success(`Failed to delete document`);
+      }
+
+      const lestL= documents.filter((d)=>d._id!==doc._id)
+      
+       if(lestL){
+         setDocuments(lestL);
+       }
+       SetLoading(false); 
     } catch (error) {
       toast.error(error.message||"Filed to deleted document");
     }
 
   };
+    if(loading ){
+         return <div className=" w-full h-full flex justify-center items-center">
+            <Spinner />
+          </div>
+        }
 
      const renderDocument=()=>{
         if(loading ){
@@ -140,7 +152,7 @@ const DocumentListPage = () => {
         }
 
         if(documents.length >0){
-         return <div className="grid sm:grid-cols-2 lg:grid-cols-3 md:grid-cols-4 gap-4">
+         return <div className="w-full flex flex-wrap gap-4">
           {documents?.map((doc,index)=>{
           
             return <DocumentCard
@@ -159,106 +171,42 @@ const DocumentListPage = () => {
     
   return (
   <>
-  <div className=" w-full h-screen ">
-      <div className="flex justify-between p-6">
-        <div className="flex flex-col gap-1 ">
-       <h1 className="text-3xl font-bold ">My Documents</h1>
-        <p className="text-slate-700">Manage and organize your Learning materials</p>
-        </div>
-          <Button className="text-base flex gap-1" onClick={()=>setisUploadModelOpen(true)}> <Plus size={20} />  upload document</Button>
-      
-      </div>
-    {renderDocument()}
-  </div> 
 
-  {/* <div className=" fixed inset-0 z-100 bg-slate-900/50 backdrop-blur-sm h-screen w-full flex justify-center items-center">
-    <div className=" relative bg-white/90 backdrop-blur-2xl  p-6 w-full max-w-lg border border-slate-200/50 shadow-2xl shadow-slate-900/200 rounded-2xl  ">
-      <button onClick={()=>setisUploadModelOpen()} className="absolute right-5 top-5">
-        <X strokeWidth={2} size={20} className="text-slate-600"/>
-      </button>
-      
-        <div className="flex flex-col gap-1 ">
-          <h2 className="text-xl font-medium tracking-tight text-slate-700">Upload Bocument</h2>
-          <p className="text-sm text-slate-700">Add a pdf document t oyour library.</p>
-        </div>
-
-        
-        <form className="flex flex-col gap-3 mt-4">
-          <div className="flex flex-col gap-1">
-            <label className="text-xs font-semibold text-slate-700 tracking-wide"> DOCUMENT TITLE</label>
-            <input 
-            value={uploadTitle}
-            onChange={()=>setUploadTitle(e.target.value)}
-            className="w-full h-12 px-4  outline-none border-2 rounded-xl border-slate-400 bg-slate-50/50 text-slate-900  placeholder-slate-400"
-          
-            required
-            placeholder="Enter document title.."
-            />
-          </div>
-          <div className="">
-            <label htmlFor="" className="text-xs font-semibold text-slate-700 tracking-wide">PDF FILE</label>
-            <div className="relative border border-de border-slate-600 border-4">
-             <input 
-            value={uploadFile}
-            onChange={handelFielChange}
-            className=" outline-0 "
-            required
-           
-            />
-            <div className="">
-            <div className="">
-              <Upload strokeWidth={2}/>
-            </div>
-            <p className="">
-              {
-                uploadFile ? 
-                (
-                  <span className=""> {uploadFile.name}</span>
-                ):
-                (
-                  <>
-                  <span className="">
-                    click to upload
-                  </span>{" "}
-                  or drage and drop
-                  </>
-                 
-                )
-              }
-            </p>
-            <p>PDF up to 10MB</p>  
-            </div>
-            </div>
-
-          </div>
-
-      
-
-   
-    <div className="">
-      <button
-      type="submit"
-      onClick={()=>setisUploadModelOpen(false)}
-      className=""
-      disabled={uploading}
-      >Cancel</button>
-
-      <button  type="submit"
-      className=""
-      disabled={uploading}>
-         {
-          uploading ? (
-            <span className="">
-            <div/>
-              uploading...</span>
-          ):<span>upload</span>
-         }
-      </button>
+  <div className="w-full min-h-screen px-4 sm:px-6 lg:px-12 py-6">
+  
+  {/* Header Section */}
+  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    
+    {/* Title Section */}
+    <div className="flex flex-col gap-1 text-center sm:text-left">
+      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold">
+        My Documents
+      </h1>
+      <p className="text-sm sm:text-base text-slate-600">
+        Manage and organize your Learning materials
+      </p>
     </div>
-      </form>
-    </div>  
-     </div> */}
-<div className="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+
+    {/* Button */}
+    <Button
+      className="w-full sm:w-auto text-sm sm:text-base flex items-center justify-center gap-2"
+      onClick={() => setisUploadModelOpen(true)}
+    >
+      <Plus size={18} />
+      Upload Document
+    </Button>
+
+  </div>
+
+  {/* Document Section */}
+  <div className="mt-6">
+    {renderDocument()}
+  </div>
+
+</div>
+{
+    isUploadModelOpen && (
+     <div className={`fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm flex items-center justify-center p-4   `} >
   <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-emerald-200 overflow-hidden">
 
     {/* Emerald Gradient Top Border */}
@@ -352,6 +300,7 @@ const DocumentListPage = () => {
           <button
             type="submit"
             disabled={uploading}
+            onClick={handleUplaodDoc}
             className="w-full sm:w-1/2 h-11 rounded-xl bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 text-white font-medium shadow-lg hover:scale-[1.02] active:scale-95 transition disabled:opacity-60"
           >
             {uploading ? "Uploading..." : "Upload"}
@@ -363,6 +312,9 @@ const DocumentListPage = () => {
     </div>
   </div>
 </div>
+    )
+}
+
   </>
    
   )

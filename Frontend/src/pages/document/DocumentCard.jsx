@@ -19,45 +19,40 @@ export const formatFileSize = (bytes) => {
 
 const DocumentCard = ({document,onDelete}) => {
    const navigate = useNavigate();
-      
    const handleNavigation=(e)=>{
      e.preventDefault();
-     navigate(`/document/${document._id}`)
+     navigate(`/documents/${document._id}`)
    }
-
    const handleDeleteCard=(doc)=>{
-   
-    onDelete(doc)
-
+    onDelete(doc);
    }
 
   return (
    
-    <div className="group relative bg-white rounded-2xl border border-slate-200 
-shadow-sm p-5 transition-all duration-300 
+    <div className="w-full group relative bg-white rounded-2xl border border-slate-200 
+shadow-sm p-4 transition-all duration-300 
 hover:shadow-xl hover:-translate-y-2 
-cursor-pointer" >
+cursor-pointer"  onClick={handleNavigation}>
 
   {/* Top Section */}
-  <div className="flex justify-between items-start mb-2">
-    <div className="p-3 bg-emerald-100 text-emerald-600 rounded-xl 
+  <div className="flex  justify-between items-start mb-2">
+    <div className="p-2 bg-emerald-100 text-emerald-600 rounded-xl 
     transition-all duration-300 group-hover:bg-emerald-500 group-hover:text-white">
       <FileText />
     </div>
 
     <Trash2 
-      className="text-slate-400 hover:text-red-500 hover:bg-red-50 p-2 rounded transition-colors duration-200" 
+      className="text-slate-400 hover:text-red-500 hover:bg-red-50 p-1 rounded transition-colors duration-200" 
       strokeWidth={2}
-      size={34}
+      size={24}
       onClick={()=>handleDeleteCard(document)}
     />
   </div>
 
   {/* Title */}
   <h2 
-    className="text-lg font-semibold text-slate-800 truncate mb-2"
+    className=" font-semibold text-slate-800 truncate mb-2"
     title={document.title}
-
   >
     {document.title}
   </h2>
@@ -70,10 +65,10 @@ cursor-pointer" >
   )}
 
   {/* Stats Section */}
-  <div className="flex justify-between mt-4 text-sm text-slate-600">
+  <div className="text-xs flex justify-between mt-4 text-slate-600">
 
     {document.flashCardCount !== undefined && (
-      <div className="flex items-center justify-center gap-2 bg-emerald-50 text-emerald-600  py-2 px-2 rounded-lg ">
+      <div className="flex  items-center justify-center gap-2 bg-emerald-50 text-emerald-600  py-2 px-2 rounded-lg ">
         <BookMarked className="w-4 h-4 " />
         <p >{document.flashCardCount} FlashCards</p>
       </div>

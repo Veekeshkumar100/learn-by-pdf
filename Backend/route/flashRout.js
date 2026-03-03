@@ -7,7 +7,7 @@ const FlashCardRouts=express.Router();
 
 
 
-FlashCardRouts.get("/",projectAuth,getAllFlashCardSets)
+FlashCardRouts.get("/",projectAuth,getAllFlashCardSets);
 FlashCardRouts.get("/:docunemtId",projectAuth,getFlashCards)
 FlashCardRouts.post("/:cardId/reviewed",projectAuth,reviewCount)
 FlashCardRouts.post("/:cardId/started",projectAuth,toggleStarredFlshCards)
