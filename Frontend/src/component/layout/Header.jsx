@@ -5,7 +5,6 @@ const Header = ({toggleSideBar}) => {
 
     const {user}=useAuth();
      const users= JSON.parse(localStorage.getItem("user"));
-     console.log(users);
   return (
 
 

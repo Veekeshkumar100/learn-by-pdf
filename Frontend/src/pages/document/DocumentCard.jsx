@@ -29,7 +29,7 @@ const DocumentCard = ({document,onDelete}) => {
 
   return (
    
-    <div className="w-full group relative bg-white rounded-2xl border border-slate-200 
+    <div className="w-full  sm:w-1 md:w-1/2 lg:w-1/3 group relative bg-white rounded-2xl border border-slate-200 
 shadow-sm p-4 transition-all duration-300 
 hover:shadow-xl hover:-translate-y-2 
 cursor-pointer"  onClick={handleNavigation}>
@@ -65,7 +65,7 @@ cursor-pointer"  onClick={handleNavigation}>
   )}
 
   {/* Stats Section */}
-  <div className="text-xs flex justify-between mt-4 text-slate-600">
+  <div className="text-xs flex justify-between mt-4  gap-2 text-slate-600">
 
     {document.flashCardCount !== undefined && (
       <div className="flex  items-center justify-center gap-2 bg-emerald-50 text-emerald-600  py-2 px-2 rounded-lg ">
@@ -76,8 +76,8 @@ cursor-pointer"  onClick={handleNavigation}>
 
     {document.quizzCount !== undefined && (
       <div className="flex items-center justify-center gap-2 text-indigo-500 p-2 rounded-lg bg-indigo-50 ">
-        <BrainCircuit className="w-4 h-4 " />
-        <span>{document.quizzCount} Quizzes</span>
+        <BrainCircuit className="w-3 h-3 " />
+        <span className=''>{document.quizzCount} Quizzes</span>
       </div>
     )}
 

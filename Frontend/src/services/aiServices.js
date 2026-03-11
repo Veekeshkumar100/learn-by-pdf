@@ -1,30 +1,29 @@
-import axios from "axios";
+import { CornerUpLeftIcon } from "lucide-react";
 import { axiosInstance } from "../utils/apiInstance";
 
 
 
 export const generateFlashCards =async(documentId)=>{
-    try{
-        console.log(documentId)
-        
-    const response = await axiosInstance.post(`/v1/ai/generate-FlashCard`,{
+    try{        
+    const response = await axiosInstance.post(`/v1/ai/generate-FlashCard/`,{
        documentId,
-     
     })
     return response.data;
     }catch(error){
         console.log(error);
     }
 }
-export const generateQuizs =async(documentId,option)=>{
+export const generateQuizs =async(documentId,count)=>{
+    console.log(count);
     try{
-    const response = await axios.post(`/v1/ai/generate-Quiz`,{
+    const response = await axiosInstance.post(`/v1/ai/generate-Quiz`,{
        documentId,
-       ...option,
-    })
+       count,
+    });
+
     return response.data;
     }catch(error){
-        console.log(error);
+     console.log(error);
     }
 }
 export const generateDocumentSummary =async(documentId)=>{

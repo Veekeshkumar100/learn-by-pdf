@@ -3,14 +3,12 @@ import  {User}  from '../model/user.js';
 const generateToken = (id) => {
     return jwt.sign(
         { id },
-        process.env.JWT_SECRET,
-        { expiresIn: '30d' }
+        process.env.JWT_SECRET,  
     );
 }
 
 export const registerUser =async(req,res,next)=>{
     try{
-      
         const {username,email,password} = req.body;
         //check if user exists
         const userExist= await User.findOne({email});

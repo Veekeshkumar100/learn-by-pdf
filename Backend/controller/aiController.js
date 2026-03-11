@@ -10,7 +10,6 @@ import { ChatHistory } from "../model/chatHistary.js";
 export const generateFlashCard = async (req, res, next) => {
   try {
     const { documentId, count = 10 } = req.body;
-    console.log("dc",documentId);
     if (!documentId) {
       return res.status(401).json({
         success: true,
@@ -21,7 +20,6 @@ export const generateFlashCard = async (req, res, next) => {
     const document = await Document.findOne({
       _id: documentId,
     });
-
     if (!document) {
       return res.status(401).json({
         success: true,
@@ -34,7 +32,6 @@ export const generateFlashCard = async (req, res, next) => {
       document.extreactedText,
       parseInt(count),
     );
-    console.log("cards in ai C", cards);
 
     const FlashCardset = await FlashCard.create({
       userId: req.user.id,
@@ -63,8 +60,10 @@ export const generateFlashCard = async (req, res, next) => {
 
 export const generateQuiz = async (req, res, next) => {
   try {
-    console.log(req.body);
+    
     const { documentId, count = 10 } = req.body;
+    console.log(req.body);
+    console.log("count",count)
     if (!documentId) {
       return res.status(401).json({
         success: true,
@@ -87,7 +86,7 @@ export const generateQuiz = async (req, res, next) => {
       document.extreactedText,
       parseInt(count),
     );
-    console.log("quize",quizeMcq);
+   
 
     const quizSet = await Quizz.create({
       userId: req.user.id,

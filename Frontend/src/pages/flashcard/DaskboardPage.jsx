@@ -23,7 +23,6 @@ const DaskboardPage = () => {
             toast.error("Failed to fetch dashbord data");
             console.error("failed to fetch dashbord data")
           }
-         
          }
          fatchDocumnetData();
        },[]);
@@ -35,7 +34,8 @@ const DaskboardPage = () => {
 
 if(!dashbordData || !dashbordData.overview){
   return (
-    <div className="min-h-[60vh] flex items-center justify-center bg-gradient-to-br from-amber-50 to-amber-100">
+    <div className='w-full h-full flex items-center justify-center'>
+    <div className="w-full rounded-2xl shadow-orange-100 shadow-md  min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-amber-50 to-amber-100">
       <div className="bg-white shadow-xl rounded-2xl p-10 flex flex-col items-center gap-4 animate-bounce">
         
         <div className="bg-amber-100 p-4 rounded-full shadow-inner">
@@ -50,6 +50,7 @@ if(!dashbordData || !dashbordData.overview){
           Please wait while we fetch your analytics data.
         </p>
 
+      </div>
       </div>
     </div>
   );

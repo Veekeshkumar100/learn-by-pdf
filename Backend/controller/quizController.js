@@ -51,7 +51,6 @@ export const getQuize = async (req, res, next) => {
       });
     }
 
- console.log("qz",quizes)
 
     res.status(200).json({
       success: true,
@@ -213,6 +212,7 @@ export const deleteQuiz=async(req,res,next)=>{
         status: 401,
       });
     }
+   
 
     await quizes.deleteOne();
        res.status(201).json({

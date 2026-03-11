@@ -29,11 +29,11 @@ const Tab = ({ tab, active, setActive }) => {
       </div>
 
       {/* Tab Content */}
-      <div className="mt-6 bg-white rounded-2xl shadow-md  transition-all duration-300">
+      <div className="mt-6 bg-white rounded-lg   transition-all duration-300">
         {tab.map((item, index) =>{
      if(active === item.name){
         console.log(item)
-            return <div key={index} className="w-full h-full text-slate-700">
+            return <div key={index} className=" w-full h-full text-slate-700">
               {item.content()}
             </div>
           }

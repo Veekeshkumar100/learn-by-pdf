@@ -152,7 +152,7 @@ const DocumentListPage = () => {
         }
 
         if(documents.length >0){
-         return <div className="w-full flex flex-wrap gap-4">
+         return <div className=" w-full max-w-7xl  mx-auto flex  flex-wrap   gap-6 ">
           {documents?.map((doc,index)=>{
           
             return <DocumentCard

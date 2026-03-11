@@ -27,7 +27,6 @@ export const generateFlashCardfromAi = async (text, count = 10) => {
       model: "gemini-3-flash-preview",
       contents: prompt,
     });
-    console.log("res", response.text);
     const generatedText = response.text;
     const FlashCard = [];
     const cards = generatedText.split("---");
@@ -37,7 +36,6 @@ export const generateFlashCardfromAi = async (text, count = 10) => {
       let question = "",
         answer = "",
         difficulty = "medium";
-      console.log("lines", lines);
       for (const line of lines) {
         if (line.startsWith("Q:")) {
           question = line.substring(2).trim();

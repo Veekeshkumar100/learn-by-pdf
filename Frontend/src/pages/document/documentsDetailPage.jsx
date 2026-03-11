@@ -4,13 +4,14 @@ import { getDocumentbyid } from '../../services/documentServise';
 import toast from 'react-hot-toast';
 import { useEffect } from 'react';
 import Spinner from '../../component/common/spinar';
-import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ExternalLink } from 'lucide-react';
 
 import PageTitle from '../../component/common/PageTitle';
 import Tab from '../../component/common/Tab';
 import ChatInstance from '../../component/chat/ChatInstance';
 import AiAction from '../../component/ai/AiAction';
 import FlashCardPage from '../../component/flascard/FlashCardPage';
+import QuizzsManager from '../quizzers/quizsManager';
 
 const DocumentsDetailPage = () => {
     const {id}= useParams();
@@ -100,7 +101,7 @@ const renderFlashCard=()=>{
     return <FlashCardPage/>;
 }
 const renderQuizzs=()=>{
-    return "renderQuizzs";
+    return <QuizzsManager documentId={id} />;
 }
 
     const tabs=[
