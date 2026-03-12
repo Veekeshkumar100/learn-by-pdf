@@ -64,7 +64,7 @@ export const getQuize = async (req, res, next) => {
 export const submitequizesAnswer = async (req, res, next) => {
   try {
     const { answers } = req.body;
-
+      console.log(answers)
     if (!answers) {
       return res.status(401).json({
         success: false,
@@ -97,20 +97,15 @@ export const submitequizesAnswer = async (req, res, next) => {
       let currectCount = 0;
       let userAnswers=[];
        answers.forEach(answer => {
-     const { questionIndex, Selectedanswer } = answer;
-        console.log(questionIndex, Selectedanswer);
+     let { questionIndex, selectedAnswer } = answer;
+         console.log("sles",selectedAnswer);
         const question = quizes.questions[questionIndex];  
-        console.log("selec",typeof Selectedanswer);
-        console.log("question.corr",typeof question.correctAnswer.replace(/[\[\]"]/g, ""));
-     
-
-        const isCorrect =  Selectedanswer === question.correctAnswer.replace(/[\[\]"]/g, "");
+        const isCorrect =  selectedAnswer === question.correctAnswer;
         console.log("iscirrect",isCorrect);
         if(isCorrect) currectCount++;
-        
         userAnswers.push({
             questionIndex:questionIndex,
-            selectedOption:Selectedanswer,
+            Selectedanswer:selectedAnswer,
             isCorrect:isCorrect,
             answeredAt: new Date(),
         })
@@ -161,17 +156,16 @@ export const detailtedResult = async(req,res,next)=>{
         status: 401,
       });
        }   
-       
-       
        const ditailedResult =quizes.questions?.map((question,index)=>{
+           console.log("q",question);
        const userAnswers= quizes.userAnswers.find(a=>a.questionIndex===index);
        return {
         questionIndex:index,
-       question:question.question,
-       option:question.option,
+       question:question.questionText,
+       option:question.options,
        currectAnswers:question.correctAnswer,
        explanation:question.explanation,
-       selectedAnwer:userAnswers?.selectedOption || null,
+       Selectedanswer:userAnswers?.Selectedanswer || null,
        isCurrect:userAnswers?.isCorrect || false,
        }
        })

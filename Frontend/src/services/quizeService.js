@@ -14,7 +14,7 @@ export const  getQuize=async(id)=>{
     console.log(id)
      try{
 
-    const response = await axiosInstance.get(`v1/quizz//quiz/${id}`)
+    const response = await axiosInstance.get(`v1/quizz/quiz/${id}`)
     return response.data;
     }catch(error){
         throw error.response?.data || {message : "Failed to get the all quizes"}
@@ -23,15 +23,16 @@ export const  getQuize=async(id)=>{
 
 export const submitequizesAnswer=async(answers,id)=>{
       try{
-    const response = await axios.post(`${BASE_URL}/${id}/submit`,{answers})
+    const response = await axiosInstance.post(`/v1/quizz/${id}/submit`,{answers})
     return response.data;
     }catch(error){
         throw error.response?.data || {message : "Failed to get the all quizes"}
     }
 }
 export const detailedResult=async(id)=>{
+    console.log(id);
       try{
-    const response = await axios.post(`${BASE_URL}/${id}/result`,{answers})
+    const response = await axiosInstance.post(`/v1/quizz//${id}/result`);
     return response.data;
     }catch(error){
         throw error.response?.data || {message : "Failed to get the all quizes"}

@@ -82,8 +82,7 @@ const QuizDashboard = ({quizzes,onDelete}) => {
 
           {filtered.map((quiz) => {
             const percentage =
-              (quiz.score / quiz.total) * 100;
-
+              (quiz.score / 100) * 100;
             return (
               <div
                 key={quiz.id}
@@ -108,7 +107,7 @@ const QuizDashboard = ({quizzes,onDelete}) => {
                   {/* Score */}
                   <div className="mt-3 flex items-center gap-2 text-sm font-medium text-green-700 bg-green-100 px-3 py-1 rounded-full w-fit">
                     <Trophy size={16} />
-                    {quiz.score}/{quiz.totalQuestions}
+                    {percentage.toFixed(1)}/100 
                   </div>
 
                   {/* Progress */}
@@ -144,7 +143,7 @@ const QuizDashboard = ({quizzes,onDelete}) => {
                <div className= "w-full flex justify-center mt-4 pt-2  border-t border-slate-100">
                 {
                   quiz?.userAnswers?.length > 1 ? (
-                    <Link to={`quizz/${quiz._id}/result`} className="w-full" >
+                    <Link to={`/quizz/${quiz._id}/result`} className="w-full" >
                        <button className="w-full h-11 font-semibold flex justify-center items-center bg-slate-100 px-5 rounded-2xl py-3 gap-4  hover:bg-slate-200 transition duration-300 ">
                         <BarChart2 className="w-4 h-4" strokeWidth={2.5}/>
                         View Result

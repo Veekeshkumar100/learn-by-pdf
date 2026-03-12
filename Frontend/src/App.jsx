@@ -46,7 +46,7 @@ function App() {
         {/* <Route path="/documents/:id/flashcards" element={<FlashCardsPage />} />
         <Route path="/flashCard" element={<FlashCardListPage />} /> */}
         <Route
-          path="/quizz/:quizeId/result"
+          path="/quizz/:quizId/result"
           element={<QuizzerResultPage />}
         />
         <Route path="/quizz/:quizId" element={<QuizzerTakePage />} />

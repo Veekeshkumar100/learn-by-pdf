@@ -1,12 +1,12 @@
 
 import { useEffect, useState } from "react";
-import { CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react";
-import { getQuize } from "../../services/quizeService";
-import { useParams } from "react-router-dom";
+import { CheckCircle2, ChevronLeft, ChevronRight, FileQuestion } from "lucide-react";
+import { getQuize, submitequizesAnswer } from "../../services/quizeService";
+import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const QuizzerTakePage = () => {
-//   const questions = [
+  
 //   {
 //     questionText: "What is Node.js?",
 //     options: [
@@ -63,10 +63,8 @@ const QuizzerTakePage = () => {
   const [quizz,setQuizz]=useState(null)
   const [loading ,setLoading]=useState(false)
   const [answers, setAnswers] = useState({});
-  const [submiting,setSubmting]=useState(false);
-  const [questions,setQuestion]=useState(null);
-    
- 
+  const [submiting ,setSubmiting]=useState(false)
+    const navigate =useNavigate();
 
    useEffect(()=>{
      const fetchQuizzData = async () => {
@@ -75,7 +73,6 @@ const QuizzerTakePage = () => {
       try {
        const quizz= await getQuize(quizId);
          setQuizz(quizz.data)
-         setQuestion(quizz.data.questions);
         toast.success("Quizz fatched successfully");
       } catch (error) {
         toast.error("Fialed to Quizz generating");
@@ -87,16 +84,16 @@ const QuizzerTakePage = () => {
 fetchQuizzData()
    },[quizId]);
 
-  console.log(quizz);
-  console.log(questions);
-  // const question = quizz.questions[currentIndex];
-  // const progress = ((currentIndex + 1) / questions.length) * 100;
+  const questions = quizz?.questions;
+  const currentQuestion = quizz?.questions[currentIndex];
+  const progress = ((currentIndex + 1) / quizz?.questions.length) * 100;
 
   const  optionLetters = ["A", "B", "C", "D"];
   const answeredCount = Object.keys(answers).length;
 
-  const selectOption = (option) => {
-    setAnswers({ ...answers, [currentIndex]: option });
+  
+  const handleOptionChange = (questionId,optionIndex) => {
+    setAnswers({ ...answers, [questionId]: optionIndex });
   };
 
   const next = () => {
@@ -110,23 +107,78 @@ fetchQuizzData()
       setCurrentIndex((prev) => prev - 1);
     }
   };
-  const handlesubmitQuizz=()=>{
+  const handlesubmitQuizz=async()=>{
+    setSubmiting(true)
+     try{
+      const formatAnswer = Object.keys(answers).map(questionId=>{
+       const question = quizz?.questions?.find(q=>q._id===questionId); 
+       const questionIndex = quizz?.questions.findIndex(q=>q._id===questionId);
+       const optionIndex= answers[questionId];
+       const selectedAnswer = question.options[optionIndex]
+        return {questionIndex,selectedAnswer} 
+      })
 
+       const res=await submitequizesAnswer(formatAnswer,quizId)
+       console.log(res);
+       toast.success("Quizz submiting successfully");
+       navigate(`/quizz/${quizId}/result`);
+
+
+     }catch(error){
+      toast.error(error.message || "Failed to submiting Quizz");
+      console.log(error)
+     }finally{
+      setSubmiting(false)
+     }
+  }
+
+
+  if(!quizz && !quizz?.data){
+    return <div className="min-h-[70vh] flex items-center justify-center px-4">
+
+      <div className="max-w-md w-full bg-white border border-emerald-100 shadow-lg rounded-2xl p-8 text-center">
+
+        {/* Icon */}
+        <div className="flex justify-center mb-4">
+          <div className="bg-emerald-100 p-4 rounded-full">
+            <FileQuestion className="text-emerald-600" size={32} />
+          </div>
+        </div>
+
+        {/* Title */}
+        <h2 className="text-xl font-semibold text-gray-800 mb-2">
+          Quiz Not Found
+        </h2>
+
+        {/* Description */}
+        <p className="text-gray-500 text-sm mb-6">
+          The quiz you are looking for does not exist or may have been removed.
+        </p>
+
+        {/* Button */}
+        <button
+          className="px-6 py-2 rounded-lg bg-emerald-500 text-white font-medium hover:bg-emerald-600 transition"
+        >
+          Go Back
+        </button>
+
+      </div>
+    </div>
   }
 
   return (
     <div className="min-h-screen w-full   py-12 px-4">
       
           
-          <h1 className="text-2xl font-bold text-gray-800 mb-4">{quizz.title}</h1>
+          <h1 className="text-2xl font-bold text-gray-800 mb-4">{quizz?.title}</h1>
          {/* Title */}
         <div className="w-[90%] mt-6 flex justify-between">
 
           <p className="text-sm text-gray-500 mt-1">
-            Question {currentIndex + 1} of {questions.length}
+            Question {currentIndex + 1} of {quizz?.questions.length}
           </p>
           <div className="text-sm font-medium text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">
-            Answered {answeredCount}/{questions.length}
+            Answered {answeredCount}/{quizz?.questions.length}
           </div>
         
         </div>
@@ -150,21 +202,20 @@ fetchQuizzData()
               {/* Question */}
          <div className="mb-8">
           <h2 className="text-lg font-semibold text-gray-800 leading-relaxed">
-            {question.questionText}
+            {quizz?.questions[currentIndex].questionText?.replace(/\["|"\]/g, "")}
           </h2>
         </div>
 
         {/* Options */}
         <div className="grid gap-4 mb-10">
 
-          {question.options.map((opt, index) => {
-
-            const selected = answers[currentIndex] === opt;
-
+          {currentQuestion?.options?.map((opt, index) => {
+            const selected = answers[currentQuestion._id] === index;;
+            
             return (
               <button
                 key={index}
-                onClick={() => selectOption(opt)}
+                onClick={() => handleOptionChange(currentQuestion._id,index)}
                 className={`flex items-center gap-4 p-4 rounded-xl border transition-all duration-200
                 ${
                   selected
@@ -185,7 +236,7 @@ fetchQuizzData()
                   {optionLetters[index]}
                 </div>
 
-                <span className="text-left">{opt}</span>
+                <span className="text-left">{opt.replace(/\["|"\]/g, "")}</span>
 
               </button>
             );
@@ -206,13 +257,13 @@ fetchQuizzData()
           </button>
 
 
-          { currentIndex===question.length-1 ?(
+          { currentIndex===quizz?.questions.length-1 ?(
               <button
             onClick={handlesubmitQuizz}
             disabled={submiting}
-            className="flex items-center gap-2 px-6 py-2 rounded-xl bg-emerald-500 text-white hover:bg-emerald-600 shadow-md disabled:opacity-40"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500 text-white hover:bg-emerald-600 shadow-md disabled:opacity-40"
           >
-           <span className="">
+           <span className="flex gap-2">
             {
               submiting ?
               (<>
@@ -221,7 +272,7 @@ fetchQuizzData()
               </>)
               :
              ( <>
-              <CheckCircle2  className="" strokeWidth={2.5}/>
+           <CheckCircle2  className="" strokeWidth={2.5}/>
               submite
               </>)
             }
@@ -230,7 +281,7 @@ fetchQuizzData()
           </button>
           ):(  <button
             onClick={next}
-            disabled={currentIndex === questions.length - 1}
+            disabled={currentIndex === quizz?.questions.length - 1}
             className="flex items-center gap-2 px-6 py-2 rounded-xl bg-emerald-500 text-white hover:bg-emerald-600 shadow-md disabled:opacity-40"
           >
             Next

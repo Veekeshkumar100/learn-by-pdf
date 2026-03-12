@@ -22,7 +22,6 @@ const DocumentsDetailPage = () => {
         setLoading(true)
         try {
             const responce = await getDocumentbyid(id);
-            console.log(responce);
             setDocument(responce.data);
             setLoading(false)
         } catch (error) {
