@@ -9,10 +9,18 @@ export const getFlashCards =async(documnetId)=>{
     }
 }  
 
-export const getAllFlashCardSets =async(documentId)=>{
-
+export const getAllFlashCardSets =async(id)=>{
     try{
-    const response = await axiosInstance.get(`/v1/flashcard/${documentId}`)
+    const response = await axiosInstance.get(`/v1/flashcard/${id}/getAllFlashCard`)
+    return response.data;
+    }catch(error){
+        throw error.response?.data || {message : "Failed to ge the document flashcard"}
+    }
+}  
+
+export const getAllFlashCardData =async()=>{
+    try{
+    const response = await axiosInstance.get(`/v1/flashcard`)
     return response.data;
     }catch(error){
         throw error.response?.data || {message : "Failed to ge the document flashcard"}

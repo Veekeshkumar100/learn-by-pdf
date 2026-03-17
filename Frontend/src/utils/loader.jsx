@@ -3,14 +3,14 @@ import "./loader.css";
 const Loaderforloading = () => {
   return (
     <>
-  <div class="loader">
+  <div className="loader">
   <span><span></span><span></span><span></span><span></span></span>
-  <div class="base">
+  <div className="base">
     <span></span>
-    <div class="face"></div>
+    <div className="face"></div>
   </div>
 </div>
-<div class="longfazers">
+<div className="longfazers">
   <span></span><span></span><span></span><span></span>
 </div>
     </>

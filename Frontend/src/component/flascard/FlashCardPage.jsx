@@ -10,18 +10,22 @@ import FlashCard from './FlashCard';
 import EmptySet from '../common/EmptySet';
 
 const FlashCardPage = () => {
+
     const {id:documentId}=useParams();
-    
     const [flashcardSet,setFlashCardSet]=useState([]);
     const [selectedSet,SetSelectedSet]=useState(null)
     const [loading ,setLoading]=useState(false);
     const [currentCordIndex,SetcurrentCardIdex]=useState(0)
     const [generatingFlashCardSet,setGeneratingFlashCardSet]=useState(false);
+
+    console.log(flashcardSet);
     const handleFetchFlashCardPage=async()=>{
+      console.log("vveke/")
         setLoading(true);
         try {
             const responce = await getAllFlashCardSets(documentId)
-            setFlashCardSet(responce.data)
+           console.log(responce);
+            setFlashCardSet(responce.data);
         } catch(error) {
             console.log(error.message || "fialed to fetched document");
         }finally{
@@ -50,19 +54,22 @@ handleFetchFlashCardPage()
 
 
        const handleToggleStart=async(id)=>{
-        
+           console.log(id);
          try {
                 await toggleStarredFlshCards(id)
-
+                console.log(flashcardSet)
               const upadatedFlashCardsSet = flashcardSet.map((set)=>{
+                console.log(set);
                 console.log(set,selectedSet._id);
                     if(selectedSet._id===set._id){
                         const upadatedCard= set.cards.map((card)=>{
                           return card._id===id ? {...card,isStarred:!card.isStarred} : card;
-                        })
+                        }) 
+                        console.log(upadatedCard);
                         return { ...set , cards:upadatedCard}
                     }
                 })
+                console.log(upadatedFlashCardsSet);
                 setFlashCardSet(upadatedFlashCardsSet);
                 SetSelectedSet(upadatedFlashCardsSet.find((set) => set._id===selectedSet._id));
               } catch (error) {
@@ -172,7 +179,7 @@ handleFetchFlashCardPage()
           <Spinner/> 
         </div>
     }
-
+    
     
     if(flashcardSet.length===0){
 return <EmptySet name="FlashCard" title="No FlashCard Yet" description=" You haven’t created any FlashCard yet. Generate your first set to
@@ -213,8 +220,8 @@ return <div className="w-full max-w-6xl mx-auto px-4 py-6">
   {/* FlashCard Grid */}
   <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" >
  
-    {flashcardSet.map((set, index) => {
-      return (
+  {flashcardSet?.map((set, index) => { 
+     return (
         <div
           key={index}
           className="relative group bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-lg transition cursor-pointer"
@@ -259,8 +266,8 @@ return <div className="w-full max-w-6xl mx-auto px-4 py-6">
           </div>
 
         </div>
-      );
-    })}
+); 
+   })}
 
   </div>
 

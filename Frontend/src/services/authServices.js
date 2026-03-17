@@ -2,7 +2,6 @@ import axios from "axios";
 import { axiosInstance } from "../utils/apiInstance.js";
 
 
-const BASE_URL='http://localhost:3000/api/v1/users';
 
 export const loginUser =async(formData)=>{
     console.log(formData);
@@ -23,7 +22,7 @@ export const loginUser =async(formData)=>{
 
 export const register =async(formData)=>{
     try{
-    const response = await axiosInstance.post(`${BASE_URL}/register`,formData)
+    const response = await axiosInstance.post(`/v1/users/register`,formData)
     return response.data;
     }catch(error){
         if (error.response) {
@@ -36,7 +35,7 @@ export const register =async(formData)=>{
 
 export const getProfile =async ()=>{
     try{
-    const response = await axios.get(`${BASE_URL}/profile`)
+    const response = await axiosInstance.get(`/v1/users/profile`);
     return response.data;
     }catch(error){
         console.log(error);
@@ -55,7 +54,7 @@ export const updateProfile =async(username,email)=>{
 }
 export const changePassword =async(currentPassword,newPassword)=>{
     try{
-    const response = await axios.post(`${BASE_URL}/change-password`,{
+    const response = await axiosInstance.post(`/v1/users/change-password`,{
       currentPassword,newPassword
     })
     return response.data;

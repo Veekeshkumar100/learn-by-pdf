@@ -33,7 +33,7 @@ app.use("/api/v1/documets", DocumentRout);
 app.use("/api/v1/users", router);
 app.use("/api/v1/flashcard", FlashCardRouts);
 app.use("/api/v1/ai", AiRout);
-app.use("/api/v1/quizz", QuizRout);
+app.use("/api/v1/quizz", QuizRout); 
 app.use("/api/v1/dashbord", DAskBordRout);
 //404 handler
 app.use((req, res, next) => {

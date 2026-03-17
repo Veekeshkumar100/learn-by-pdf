@@ -46,7 +46,6 @@ const LoginValidation = [
 ];
 router.post("/register", registerValidation, registerUser);
 router.post("/login", LoginValidation, loginUser);
-
 router.get("/profile", projectAuth, getProfile);
 router.post("/profile", projectAuth, updateProfile);
 router.post("/change-password", projectAuth, changePassword);

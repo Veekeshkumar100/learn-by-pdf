@@ -2,8 +2,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import Login from "./pages/Auth/login";
 import Register from "./pages/Auth/resigster";
 import ProfilePage from "./pages/ProfilePage/Profilepage";
-// import FlashCardListPage from "./pages/flashcard/fllashCardListPage";
-// import FlashCardsPage from "./pages/flashcard/flashCArsPage";
+import FlashCardListPage from "./pages/flashcard/fllashCardListPage";
 import DocumentListPage from "./pages/document/documentListPage";
 import DaskboardPage from "./pages/flashcard/DaskboardPage.jsx";
 import ProtectedRoute from "./component/protectedRout/ProtectedRout";
@@ -12,6 +11,7 @@ import Applayout from "./component/layout/Applayout.jsx";
 import DocumentsDetailPage from "./pages/document/documentsDetailPage.jsx";
 import QuizzerResultPage from "./pages/quizzers/QuizzerResultPage.jsx";
 import QuizzerTakePage from "./pages/quizzers/QuizzerTakePage.jsx";
+import FlashCardsPage from "./pages/flashcard/FlashCardsPage.jsx";
 
 function App() {
   const {isAuthenticat,lodding} =useAuth();
@@ -43,8 +43,8 @@ function App() {
         <Route path="/dashboard" element={<DaskboardPage/>}/>
         <Route path="/documents" element={<DocumentListPage />} />
         <Route path="/documents/:id" element={<DocumentsDetailPage />} />
-        {/* <Route path="/documents/:id/flashcards" element={<FlashCardsPage />} />
-        <Route path="/flashCard" element={<FlashCardListPage />} /> */}
+        <Route path="/documents/:id/flashcards" element={<FlashCardsPage />} />
+        <Route path="/flashCards" element={<FlashCardListPage />} /> 
         <Route
           path="/quizz/:quizId/result"
           element={<QuizzerResultPage />}

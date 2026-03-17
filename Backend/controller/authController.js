@@ -106,6 +106,7 @@ export const loginUser =async(req,res,next) => {
 export const getProfile =async (req,res,next)=>{
     try{
       const user= await User.findById(req.user._id);
+      console.log(user);
       if(!user){
         return res.status(401).json({
             success:true,
@@ -114,8 +115,8 @@ export const getProfile =async (req,res,next)=>{
         })
       }
 
-    res.status(401).json({
-        succes:false,
+    res.status(200).json({
+        succes:true,
         data:{
             user:{
                 id:user.id,
@@ -181,10 +182,10 @@ export const changePassword =async(req,res,next)=>{
          user.password=newPassword;
          await user.save()
          
-          res.status(401).json({
+          res.status(200).json({
             succes:true,
             message:'password is changed successfully',
-            stautusCode:401,
+            stautusCode:200,
          })
     }catch(error){
         next(error);

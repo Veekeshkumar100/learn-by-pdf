@@ -7,7 +7,7 @@ import { FlashCard } from "../model/flaseCard.js";
 
 export  const getFlashCards=async(req,res,next)=>{
 try {
-  
+    console.log("vekes1")
    const FlashCards= await FlashCard.findOne({
     userId:new mongoose.Types.ObjectId(req.user.id),
      documentId:new mongoose.Types.ObjectId(req.params.docunemtId)
@@ -38,10 +38,39 @@ try {
 }
 
 export  const getAllFlashCardSets=async(req,res,next)=>{
+  
 try {
    const FlashCardSet= await FlashCard.find({
     userId:new mongoose.Types.ObjectId(req.user.id),
     documentId:req.params.id,
+   }).populate("documentId","title ")
+   .sort({createdAt:-1});
+    
+   if(!FlashCardSet){
+    res.status(401).json({
+        success:false,
+        error:"FlashCardSets not found",
+        status:401,
+    })
+   }
+
+
+  res.status(200).json({
+        success:true,
+        message:"flasdCardsSets  found sussecfully",
+        count:FlashCardSet.length,
+        data:FlashCardSet,
+        status:401,
+    });
+
+} catch (error) {
+    console.log("error while getting FlashCardSet ",error);
+}
+}
+export  const getAllFlashCardData=async(req,res,next)=>{
+try {
+   const FlashCardSet= await FlashCard.find({
+    userId:new mongoose.Types.ObjectId(req.user.id),
    }).populate("documentId","title ")
    .sort({createdAt:-1});
 
@@ -114,7 +143,8 @@ try {
 
 export const toggleStarredFlshCards=async(req,res,next)=>{
 try {
-    // console.log(res.user.id)
+    console.log("veekesh")
+    console.log(req.params.cardId);
    const FlashCardSet= await FlashCard.findOne({
      "cards._id":req.params.cardId,
      userId:req.user.id,
@@ -142,7 +172,7 @@ try {
         success:true,
         message:`flasdCard ${ FlashCardSet.cards[cardIndex]?"starred":"unstarred"} found sussecfully`,
         data:FlashCardSet,
-        status:401,
+        status:201,
     });
 
 } catch (error) {

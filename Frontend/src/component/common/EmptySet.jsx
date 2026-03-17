@@ -38,7 +38,8 @@ const EmptySet = ({ name,title,description,generatQuizzes,generating}) => {
         </p>
 
         {/* Button */}
-        <button
+        {
+        generatQuizzes &&  <button
          onClick={generatQuizzes}
         disabled={generating}
           className="  flex justify-center gap-2 w-full bg-emerald-500 hover:bg-emerald-600 text-white font-medium py-3 rounded-xl transition duration-200 shadow-md"
@@ -49,6 +50,8 @@ const EmptySet = ({ name,title,description,generatQuizzes,generating}) => {
             }
           
         </button>
+        } 
+          
       </div>
     </div>
     

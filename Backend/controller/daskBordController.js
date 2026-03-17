@@ -6,6 +6,7 @@ import { Quizz } from "../model/qizzs.js";
 export const getDaskBord=async(req,res,next)=>{
     try {
      const userId =req.user.id;
+     console.log("id",userId);
        console.log("id",userId);
      const totalDocument= await Document.countDocuments({userId});  
        const totalQuiz= await Quizz.countDocuments({userId}) ;
@@ -24,7 +25,7 @@ export const getDaskBord=async(req,res,next)=>{
 
        })
        const quizset= await Quizz.find({userId,completedAt:{$ne:null}});
-       const averageScore= quizset.length>0 ? Math.round(quizset.reduce((sum,c)=> sum+c.quizset.score,0)/quizset.length):0;
+       const averageScore= quizset.length>0 ? Math.round(quizset.reduce((sum,c)=> (sum + (c.score)),0)/quizset.length):0;
 
        const recentQuiz = await Quizz.find({userId})
        .sort({createdAt:-1})
