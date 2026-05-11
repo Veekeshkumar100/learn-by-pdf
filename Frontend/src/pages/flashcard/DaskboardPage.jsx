@@ -16,7 +16,6 @@ const DaskboardPage = () => {
          const fatchDocumnetData=async()=>{
           try {
              const response= await getDaskBord();
-          console.log(response);
           SetdashbordData(response);
           Setloading(false)
           } catch (error) {
@@ -26,7 +25,7 @@ const DaskboardPage = () => {
          }
          fatchDocumnetData();
        },[]);
-
+     
        if(loading){
         return <Loaderforloading/>
        }
@@ -164,19 +163,18 @@ return (
             ...(dashbordData.recentActivity.Quizzs || []).map((quiz) => ({
               id: quiz._id,
               description: quiz.title,
-              timeStamp: quiz.lastAccess,
+              timeStamp: quiz.completedAt,
               link: `/quizs/${quiz._id}`,
               type: 'quiz'
             }))
           ]
             .sort((a, b) => new Date(b.timeStamp) - new Date(a.timeStamp))
-            .map((item) => (
-
+            .map((item) =>  (
+              
               <div
                 key={item.id}
                 className="group flex items-center justify-between p-4 rounded-xl bg-gray-50 hover:bg-white hover:shadow-md transition-all duration-300 border border-transparent hover:border-gray-200"
               >
-
                 {/* Left Side */}
                 <div className="flex items-center gap-4">
 

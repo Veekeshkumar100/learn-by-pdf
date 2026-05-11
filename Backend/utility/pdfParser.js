@@ -10,7 +10,6 @@ try {
     console.error(err);
     return;
   }
-  console.log("file reading data",data);
 });
    
      const uint8Array = new Uint8Array(databuffer)

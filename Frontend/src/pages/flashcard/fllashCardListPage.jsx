@@ -3,18 +3,17 @@ import { deleteFlashCard, getAllFlashCardData } from '../../services/flashCardse
 import Spinner from '../../component/common/spinar';
 import EmptySet from '../../component/common/EmptySet';
 import FlashCardsSetCard from './flashCardSetCard';
+import toast from 'react-hot-toast';
 
 
 const FlashCardListPage = () => {
   const [loading,setLoading]=useState(false);
   const [FlashCardSets,setFlashCardSets]=useState([]);
-
-
+  
    const fehtchAllFlaceCards=async()=>{
      setLoading(true)
     try {
           const res = await getAllFlashCardData();
-          console.log(res);
           setFlashCardSets(res.data)
     } catch (error) {
      console.log(error || "failed to faetch data of flashCard") 

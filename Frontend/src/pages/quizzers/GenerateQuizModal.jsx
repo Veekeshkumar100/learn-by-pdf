@@ -14,10 +14,10 @@ const GenerateQuizModal = ({ onCancel, onGenerate,generating }) => {
     <div className="fixed inset-0 z-100 flex items-start justify-center bg-black/40 backdrop-blur-sm pt-24 ">
 
       {/* Modal */}
-      <div className="w-[90%] h-60 max-w-md bg-white rounded-2xl shadow-2xl p-6 animate-in fade-in zoom-in ">
+      <div className="w-[90%] h-60 max-w-md bg-white rounded-2xl shadow-xl p-6 animate-in fade-in zoom-in   shadow-purple-200">
               {
                 generating ? (
-                <div className=" flex justify-center items-center">
+                <div className="w-full h-full flex justify-center items-center">
                 <Spinner/>
                 </div>
             ) : (
@@ -62,7 +62,7 @@ const GenerateQuizModal = ({ onCancel, onGenerate,generating }) => {
 
           <button
             onClick={handleGenerate}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500 text-white hover:bg-purple-600 transition"
           >
             <Sparkles size={16} />
             Generate

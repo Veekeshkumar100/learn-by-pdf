@@ -25,12 +25,10 @@ const FlashCardsPage = ({}) => {
   const [loading, setLoading] = useState(false);
   const [currentCordIndex, SetcurrentCardIdex] = useState(0);
   const [generatingFlashCardSet , setGeneratingFlashCardSet] = useState(false);
-    console.log(selectedSet)
   const handleFetchFlashCardPage = async () => {
     setLoading(true);
     try {
       const responce = await getAllFlashCardSets(id);
-      console.log(responce);
       setFlashCardSet(responce?.data[0]);
       setFlashCards(responce.data[0]?.cards || []);
     } catch (error) {
@@ -56,7 +54,6 @@ const FlashCardsPage = ({}) => {
   };
 
   const handleToggleStart = async (id) => {
-    console.log("id",id);
     try {
       await toggleStarredFlshCards(id);
         setFlashCards((preFlashCard)=>{
@@ -95,7 +92,6 @@ const FlashCardsPage = ({}) => {
     setLoading(true);
     try {
       const res = await deleteFlashCard(flashcardSet._id);
-      console.log(res);
       if (res.status === 201) {
         Navigate('/flashcards');
         toast.success("flashCard Deleted !");
@@ -185,7 +181,7 @@ const FlashCardsPage = ({}) => {
     <div className=" mt-6">
         <div className=" flex justify-between">
            <h1 className="text-2xl font-semibold">FlashCards</h1>
-           <button onClick={handleDeleteRequest} className="bg-emerald-500 p-3 rounded-xl flex justify-center items-center gap-2 text-white font-semibold">
+           <button onClick={handleDeleteRequest} className="bg-purple-500 p-3 rounded-xl flex justify-center items-center gap-2 text-white font-semibold">
            <Trash2 className="w-4 h-4" /> Delete Set
            </button>
         </div>

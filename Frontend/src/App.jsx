@@ -15,21 +15,15 @@ import FlashCardsPage from "./pages/flashcard/FlashCardsPage.jsx";
 
 function App() {
   const {isAuthenticat,lodding} =useAuth();
-  console.log(isAuthenticat);
-  if (lodding) {
-    return (
-      <div className=" flex items-center justify-center h-screen">
-        <p>Loading...</p>
-      </div>
-    );
-  }
+
   return (
     <Routes>
-   
-       <Route
+<Route
   path="/"
   element={
-    isAuthenticat ? (
+    lodding ? (
+      <div>Loading...</div>
+    ) : isAuthenticat ? (
       <Navigate to="/dashboard" replace />
     ) : (
       <Navigate to="/login" replace />

@@ -8,13 +8,11 @@ import {
   Trophy,
   Filter,
   BarChart2,
-  Plus,
   Play
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
-
-const QuizDashboard = ({quizzes,onDelete}) => {
+const QuizDashboard = ({ quizzes, onDelete }) => {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("all");
 
@@ -28,39 +26,34 @@ const QuizDashboard = ({quizzes,onDelete}) => {
     });
 
   return (
-
-    <div className=" backdrop:border-blur-xl   ">
+    <div className="min-h-screen  p-6">
 
       {/* Header */}
-      <div className="max-w-7xl mx-auto mb-8 flex flex-col  gap-4 p-6">
-
-        <h1 className="text-3xl font-bold text-gray-800">
+      <div className="max-w-7xl mx-auto mb-10">
+        <h1 className="text-3xl font-bold text-slate-800">
           Quiz Dashboard
         </h1>
 
-        {/* Search */}
-        <div className="flex items-center gap-3">
-
-          <div className="relative">
-            <Search
-              size={18}
-              className="absolute left-3 top-2.5 text-gray-400"
-            />
-
+        <div className="flex flex-col sm:flex-row gap-4 mt-6">
+          
+          {/* Search */}
+          <div className="relative w-full sm:w-80">
+            <Search className="absolute left-3 top-3 text-slate-400" size={18} />
             <input
               type="text"
-              placeholder="Search quiz..."
-              className="pl-9 pr-4 py-2 rounded-lg focus:outline-none  focus:border-emerald-500  border-2 border-slate-200"
+              placeholder="Search quizzes..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
+              className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 
+              focus:ring-2 focus:ring-purple-500 outline-none bg-white shadow-sm"
             />
           </div>
 
           {/* Filter */}
-          <div className="flex items-center gap-2 bg-white  px-3 py-2 rounded-lg focus:border-emerald-500  border-2 border-slate-200">
-            <Filter size={16} />
+          <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-200 bg-white shadow-sm">
+            <Filter size={16} className="text-slate-500" />
             <select
-              className="outline-none bg-transparent"
+              className="outline-none bg-transparent text-sm"
               onChange={(e) => setFilter(e.target.value)}
             >
               <option value="all">All</option>
@@ -68,98 +61,92 @@ const QuizDashboard = ({quizzes,onDelete}) => {
               <option value="recent">Recent</option>
             </select>
           </div>
-
         </div>
       </div>
 
-      {/* Quiz Cards */}
+      {/* Cards */}
       {filtered.length === 0 ? (
-        <div className="text-center text-gray-500 mt-20">
+        <div className="text-center text-slate-500 mt-20">
           No quizzes found
         </div>
       ) : (
-        <div className="max-w-7xl mx-auto grid gap-6 sm:grid-cols-1  lg:grid-cols-2 p-2 ">
+        <div className="max-w-7xl mx-auto grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 
           {filtered.map((quiz) => {
-            const percentage =
-              (quiz.score / 100) * 100;
+            const percentage = (quiz.score / 100) * 100;
+
             return (
               <div
                 key={quiz.id}
-                className="bg-white rounded-2xl  p-6 flex flex-col justify-between hover:shadow-xl hover:-translate-y-1 transition border-2 border-slate-200"
+                className="group relative rounded-3xl p-[1px] bg-gradient-to-br from-purple-500 via-indigo-500 to-violet-500 hover:scale-[1.02] transition-all duration-300"
               >
+                {/* Inner Card */}
+                <div className="bg-white rounded-3xl p-6 h-full shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
 
-                {/* Top */}
-                <div>
+                  {/* Delete */}
+                  <button
+                    onClick={() => onDelete(quiz._id)}
+                    className="absolute top-4 right-4 p-2 rounded-xl text-slate-400 hover:text-red-500 hover:bg-red-50 transition"
+                  >
+                    <Trash2 size={18} />
+                  </button>
 
-                  <div className="flex justify-between">
-
-                    <h2 className="font-semibold text-lg text-gray-800">
+                  {/* Top */}
+                  <div>
+                    <h2 className="text-lg font-semibold text-slate-800">
                       {quiz.title}
                     </h2>
 
-                    <button className="p-2 rounded-lg hover:bg-red-50 text-red-500"  onClick={()=>onDelete(quiz._id)}>
-                      <Trash2 size={18} />
-                    </button>
+                    {/* Score Badge */}
+                    <div className="mt-3 inline-flex items-center gap-2 px-3 py-1 text-xs font-medium rounded-full bg-purple-100 text-purple-700">
+                      <Trophy size={14} />
+                      {percentage.toFixed(1)}%
+                    </div>
 
-                  </div>
+                    {/* Progress */}
+                    <div className="mt-4">
+                      <div className="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
+                        <div
+                          className="h-full bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full transition-all duration-700"
+                          style={{ width: `${percentage}%` }}
+                        />
+                      </div>
+                    </div>
 
-                  {/* Score */}
-                  <div className="mt-3 flex items-center gap-2 text-sm font-medium text-green-700 bg-green-100 px-3 py-1 rounded-full w-fit">
-                    <Trophy size={16} />
-                    {percentage.toFixed(1)}/100 
-                  </div>
+                    {/* Info */}
+                    <div className="mt-5 space-y-2 text-sm text-slate-600">
+                      <div className="flex items-center gap-2">
+                        <FileQuestion size={15} />
+                        {quiz.totalQuestions} Questions
+                      </div>
 
-                  {/* Progress */}
-                  <div className="mt-4">
-                    <div className="w-full bg-gray-200 h-2 rounded-full">
-                      <div
-                        className="bg-emerald-300 h-2 rounded-full"
-                        style={{ width: `${percentage}%` }}
-                      />
+                      <div className="flex items-center gap-2">
+                        <Calendar size={15} />
+                        {quiz.createdAt}
+                      </div>
                     </div>
                   </div>
 
-                  {/* Info */}
-                  <div className="mt-4 space-y-2 text-sm text-gray-600">
-
-                    <div className="flex items-center gap-2">
-                      <FileQuestion size={16} />
-
-                      {quiz.totalQuestions} Questions
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                      <Calendar size={16} />
-                      {quiz.createdAt}
-                    </div>
-
+                  {/* Action */}
+                  <div className="mt-6">
+                    {quiz?.userAnswers?.length > 1 ? (
+                      <Link to={`/quizz/${quiz._id}/result`}>
+                        <button className="w-full h-11 flex items-center justify-center gap-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-sm font-medium transition">
+                          <BarChart2 size={16} />
+                          View Result
+                        </button>
+                      </Link>
+                    ) : (
+                      <Link to={`/quizz/${quiz._id}`}>
+                        <button className="w-full h-11 flex items-center justify-center gap-2 rounded-xl border border-purple-200 text-purple-600 hover:bg-purple-50 transition text-sm font-medium">
+                          <Play size={16} />
+                          Start Quiz
+                        </button>
+                      </Link>
+                    )}
                   </div>
 
                 </div>
-
-                {/* Button */}
-               
-               <div className= "w-full flex justify-center mt-4 pt-2  border-t border-slate-100">
-                {
-                  quiz?.userAnswers?.length > 1 ? (
-                    <Link to={`/quizz/${quiz._id}/result`} className="w-full" >
-                       <button className="w-full h-11 font-semibold flex justify-center items-center bg-slate-100 px-5 rounded-2xl py-3 gap-4  hover:bg-slate-200 transition duration-300 ">
-                        <BarChart2 className="w-4 h-4" strokeWidth={2.5}/>
-                        View Result
-                      </button>
-                    </Link> 
-                  ) :(
-                     <Link to={`/quizz/${quiz._id}`}   className="w-full" >
-                      <button className="w-full h-11 font-semibold flex justify-center items-center bg-slate-100 px-5 rounded-2xl py-3 gap-4  hover:bg-slate-200 transition duration-300 ">
-                        <Play className="w-4 h-4" strokeWidth={2.5} />
-                        Start quizz
-                      </button>
-                    </Link>  
-                  )
-                }
-               </div>
-
               </div>
             );
           })}
@@ -170,4 +157,3 @@ const QuizDashboard = ({quizzes,onDelete}) => {
 };
 
 export default QuizDashboard;
-

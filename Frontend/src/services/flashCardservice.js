@@ -47,7 +47,7 @@ export const toggleStarredFlshCards =async(cardIndex)=>{
 
 export const deleteFlashCard=async(id)=>{
      try{
-    const response = await axiosInstance.delete(`v1/flashcard/${id}`);
+    const response = await axiosInstance.delete(`/v1/flashcard/${id}`);
     return response.data;
     }catch(error){
         throw error.response?.data || {message : "Failed to upload the document"}

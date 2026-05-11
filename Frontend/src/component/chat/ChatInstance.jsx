@@ -36,19 +36,15 @@ const ChatInstance = () => {
 
     const handleSendMessage=async(e)=>{
          if(!message.trim()) return null;
-         console.log(
-    "msg",message
-         )
+        
          const userMesaagse = {role:"user",content:message,timestamp:new Date()}
          SetHistory(pre=>[...pre,userMesaagse]);
          SetMessage('');
          SetLoading(true);
          try {
             const responce= await Chating(userMesaagse.content,id);
-            console.log(responce);
             const  assistantMessage = {role:"assistant",content:responce.data.chatAnwer,timestamp:new Date(),relevantChunks:responce.relevantChunks}
              SetHistory(pre=>[...pre,assistantMessage]);
-             console.log(history);
          } catch (error) {
           console.log(error.message || "Failed to fetch answer") ; 
           const errorMessage ={role:"assistant",content:'sory I am encounter an error ,please try again',timestamp:new Date(),relevantChunks:responce.relevantChunks}
@@ -64,8 +60,8 @@ const ChatInstance = () => {
       
       {/* Logo */}
       <div className="mb-6">
-        <div className="w-20 h-20 flex items-center justify-center rounded-2xl bg-emerald-100">
-          <MessageSquare className="w-10 h-10 text-emerald-600" />
+        <div className="w-20 h-20 flex items-center justify-center rounded-2xl bg-purple-100">
+          <MessageSquare className="w-10 h-10 text-purple-600" />
         </div>
       </div>
 
@@ -95,8 +91,8 @@ const ChatInstance = () => {
       
       {/* Logo */}
       <div className="mb-6">
-        <div className="w-20 h-20 flex items-center justify-center rounded-2xl bg-emerald-100">
-          <MessageSquare className="w-10 h-10 text-emerald-600" />
+        <div className="w-20 h-20 flex items-center justify-center rounded-2xl bg-purple-100">
+          <MessageSquare className="w-10 h-10 text-purple-600" />
         </div>
       </div>
 
@@ -113,7 +109,7 @@ const ChatInstance = () => {
       {/* Loading State */}
       {loading && (
         <div className="mt-6 flex flex-col items-center gap-3">
-          <div className="w-8 h-8 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin"></div>
+          <div className="w-8 h-8 border-4 border-purple-500 border-t-transparent rounded-full animate-spin"></div>
           
           <Spinner/>
         
@@ -151,7 +147,7 @@ const ChatInstance = () => {
                 transition-all duration-300
                 ${
                   msg.role === "user"
-                    ? "bg-emerald-500 text-white rounded-br-md"
+                    ? "bg-purple-500 text-white rounded-br-md"
                     : "bg-slate-100 text-slate-800 rounded-bl-md"
                 }
               `}
@@ -166,7 +162,7 @@ const ChatInstance = () => {
                   block mt-2 text-[10px] sm:text-xs opacity-70
                   ${
                     msg.role === "user"
-                      ? "text-emerald-100"
+                      ? "text-purple-100"
                       : "text-slate-500"
                   }
                 `}
@@ -181,7 +177,7 @@ const ChatInstance = () => {
             {loading && (
           <div className="flex justify-start">
             <div className="flex items-center gap-2 bg-white border border-slate-200 px-4 py-3 rounded-2xl shadow-sm">
-              <Loader2 className="animate-spin text-emerald-500" size={16} />
+              <Loader2 className="animate-spin text-purple-500" size={16} />
               <span className="text-sm text-slate-500">
                 Assistant is typing...
               </span>

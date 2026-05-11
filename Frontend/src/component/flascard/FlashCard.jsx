@@ -53,7 +53,7 @@ const FlashCard = ({currentCard,onToggle}) => {
           </div>
 
           {/* Answer Side */}
-          <div className="absolute inset-0 bg-emerald-500 text-white rounded-2xl shadow-lg p-6 flex items-center justify-center text-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
+          <div className="absolute inset-0 bg-purple-500 text-white rounded-2xl shadow-lg p-6 flex items-center justify-center text-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
             <p className="text-lg font-semibold">
               {currentCard.answer}
             </p>

@@ -7,7 +7,6 @@ import { FlashCard } from "../model/flaseCard.js";
 
 export  const getFlashCards=async(req,res,next)=>{
 try {
-    console.log("vekes1")
    const FlashCards= await FlashCard.findOne({
     userId:new mongoose.Types.ObjectId(req.user.id),
      documentId:new mongoose.Types.ObjectId(req.params.docunemtId)
@@ -143,8 +142,7 @@ try {
 
 export const toggleStarredFlshCards=async(req,res,next)=>{
 try {
-    console.log("veekesh")
-    console.log(req.params.cardId);
+  
    const FlashCardSet= await FlashCard.findOne({
      "cards._id":req.params.cardId,
      userId:req.user.id,
@@ -194,9 +192,10 @@ if(!flashcard){
         status:401,
     })
    }
-   await FlashCard.deleteOne()
 
-  res.status(200).json({
+   await FlashCard.findByIdAndDelete(req.params.id);
+
+  res.status(201).json({
         success:true,
         message:`flasdCard deleted sussecfully`,
         status:201,

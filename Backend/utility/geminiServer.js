@@ -30,7 +30,6 @@ export const generateFlashCardfromAi = async (text, count = 10) => {
     const generatedText = response.text;
     const FlashCard = [];
     const cards = generatedText.split("---");
-    // console.log("cards in gem",cards)
     for (const card of cards) {
       let lines = card.trim().split("\n");
       let question = "",
@@ -83,7 +82,6 @@ export const generateQuiz = async (text, numQuize = 5) => {
     });
 
     const generatedText = response.text;
-    console.log(generatedText);
     const questions = [];
     const questionBlocks = generatedText.split("---").filter((q) => q.trim());
     for (const block of questionBlocks) {
@@ -124,7 +122,6 @@ export const generateQuiz = async (text, numQuize = 5) => {
         });
       }
     }
-    console.log("questions", questions);
     return questions.splice(0, numQuize);
   } catch (error) {
     console.log("gemini api error", error);

@@ -6,10 +6,10 @@ import Applayout from '../layout/Applayout';
 import Loaderforloading from '../../utils/loader';
 
 export default function ProtectedRoute( ) {
-  const {isAuthenticat,loading}=useAuth()
+  const {isAuthenticat,lodding}=useAuth()
 
 
-  if (loading) {
+  if (lodding) {
     return (
      <Loaderforloading/>
     )

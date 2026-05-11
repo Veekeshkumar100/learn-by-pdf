@@ -6,8 +6,6 @@ import { Quizz } from "../model/qizzs.js";
 export const getDaskBord=async(req,res,next)=>{
     try {
      const userId =req.user.id;
-     console.log("id",userId);
-       console.log("id",userId);
      const totalDocument= await Document.countDocuments({userId});  
        const totalQuiz= await Quizz.countDocuments({userId}) ;
        const totolFlashCard= await FlashCard.countDocuments({userId});

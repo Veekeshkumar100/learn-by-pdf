@@ -26,10 +26,10 @@ const handleFormSubmitr=async(e)=>{
    }
 try {
   const responce=await loginUser(formData);
-  console.log(responce)
+
   if(responce.status===200){
    const {user,token} =responce;
-   login(user,token)
+   login(user,token);
    setLoading(false); 
    navigate("/dashboard");
    toast.success('Login successful ')
@@ -59,7 +59,7 @@ try {
     
     {/* Header */}
     <div className="flex flex-col items-center text-center mb-6">
-      <div className="text-white bg-emerald-500 p-3 sm:p-4 rounded-xl">
+      <div className="text-white bg-purple-500 p-3 sm:p-4 rounded-xl">
         <BrainCircuit strokeWidth={2} />
       </div>
 
@@ -84,7 +84,7 @@ try {
         <div className="relative flex items-center">
           <div
             className={`absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none duration-200
-              ${focusField === "email" ? "text-emerald-500" : "text-slate-500"}
+              ${focusField === "email" ? "text-purple-500" : "text-slate-500"}
             `}
           >
             <Mail size={18} />
@@ -94,7 +94,7 @@ try {
             type="email"
             placeholder="you@gmail.com"
             value={email}
-            className="w-full h-11 sm:h-12 pl-10 pr-3 outline-none border-2 rounded-md border-slate-200 focus:border-emerald-500 transition"
+            className="w-full h-11 sm:h-12 pl-10 pr-3 outline-none border-2 rounded-md border-slate-200 focus:border-purple-500 transition"
             onFocus={() => setFocusField("email")}
             onChange={(e) => SetEmail(e.target.value)}
           />
@@ -110,7 +110,7 @@ try {
         <div className="relative flex items-center">
           <div
             className={`absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none duration-200
-              ${focusField === "password" ? "text-emerald-500" : "text-slate-500"}
+              ${focusField === "password" ? "text-purple-500" : "text-slate-500"}
             `}
           >
             <Lock size={18} />
@@ -120,7 +120,7 @@ try {
             type="password"
             placeholder="••••••••"
             value={password}
-            className="w-full h-11 sm:h-12 pl-10 pr-3 outline-none border-2 rounded-md border-slate-200 focus:border-emerald-500 transition"
+            className="w-full h-11 sm:h-12 pl-10 pr-3 outline-none border-2 rounded-md border-slate-200 focus:border-purple-500 transition"
             onFocus={() => setFocusField("password")}
             onChange={(e) => Setpassword(e.target.value)}
           />
@@ -133,7 +133,7 @@ try {
 
       {/* Button */}
       <button
-        className="w-full flex items-center justify-center gap-2 bg-emerald-500 text-white font-semibold text-sm sm:text-base py-2.5 rounded-md hover:bg-emerald-600 transition"
+        className="w-full flex items-center justify-center gap-2 bg-purple-500 text-white font-semibold text-sm sm:text-base py-2.5 rounded-md hover:bg-purple-600 transition"
         onClick={handleFormSubmitr}
       >
         {loading ? "Signing in..." : (
@@ -153,7 +153,7 @@ try {
         Don't have an account?{" "}
         <Link
           to="/register"
-          className="text-blue-600 hover:text-emerald-500 transition"
+          className="text-blue-600 hover:text-purple-500 transition"
         >
           Sign up
         </Link>

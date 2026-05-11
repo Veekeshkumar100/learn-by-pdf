@@ -44,7 +44,6 @@ const QuizzsManager = ({ documentId }) => {
 
 
   const handlequizzDeleteButton=async(id)=>{
-    console.log(id)
    setLoading(true)
         try {
         const res= await deleteQuiz(id);
@@ -68,7 +67,9 @@ const QuizzsManager = ({ documentId }) => {
       return   <Spinner />;
     }
     if (quizzes.length === 0) {
-      return (
+      return ( 
+       
+
         <EmptySet
           name="Quizz"
           title="No Quizzs Yet"
@@ -76,7 +77,9 @@ const QuizzsManager = ({ documentId }) => {
           start learning and reviewing concepts quickly."
           generatQuizzes={generatQuizzes}
           generating={generating}
-        />
+        isDeleteModelOpened={isDeleteModelOpened}
+          />
+          
       );
     }
 
@@ -92,7 +95,7 @@ const QuizzsManager = ({ documentId }) => {
         <button
           onClick={()=>isDeleteModelOpened(true)}
           disabled={generating}
-          className="   flex justify-center py-3 px-4 shadow-md gap-2  bg-emerald-500 hover:bg-emerald-600 text-white font-medium  rounded-xl transition duration-200 shadow-md"
+          className="   flex justify-center py-3 px-4 shadow-md gap-2  bg-purple-500 hover:bg-purple-600 text-white font-medium  rounded-xl transition duration-200 shadow-md"
         >
           <Plus />
           {generating ? " Generate Quizz..." : "Generate Quizz"}

@@ -68,7 +68,6 @@ const QuizzerTakePage = () => {
 
    useEffect(()=>{
      const fetchQuizzData = async () => {
-    console.log("veeeks")
       setLoading(true);
       try {
        const quizz= await getQuize(quizId);
@@ -119,7 +118,6 @@ fetchQuizzData()
       })
 
        const res=await submitequizesAnswer(formatAnswer,quizId)
-       console.log(res);
        toast.success("Quizz submiting successfully");
        navigate(`/quizz/${quizId}/result`);
 
@@ -136,12 +134,12 @@ fetchQuizzData()
   if(!quizz && !quizz?.data){
     return <div className="min-h-[70vh] flex items-center justify-center px-4">
 
-      <div className="max-w-md w-full bg-white border border-emerald-100 shadow-lg rounded-2xl p-8 text-center">
+      <div className="max-w-md w-full bg-white border border-purple-100 shadow-lg rounded-2xl p-8 text-center">
 
         {/* Icon */}
         <div className="flex justify-center mb-4">
-          <div className="bg-emerald-100 p-4 rounded-full">
-            <FileQuestion className="text-emerald-600" size={32} />
+          <div className="bg-purple-100 p-4 rounded-full">
+            <FileQuestion className="text-purple-600" size={32} />
           </div>
         </div>
 
@@ -157,7 +155,7 @@ fetchQuizzData()
 
         {/* Button */}
         <button
-          className="px-6 py-2 rounded-lg bg-emerald-500 text-white font-medium hover:bg-emerald-600 transition"
+          className="px-6 py-2 rounded-lg bg-purple-500 text-white font-medium hover:bg-purple-600 transition"
         >
           Go Back
         </button>
@@ -177,7 +175,7 @@ fetchQuizzData()
           <p className="text-sm text-gray-500 mt-1">
             Question {currentIndex + 1} of {quizz?.questions.length}
           </p>
-          <div className="text-sm font-medium text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">
+          <div className="text-sm font-medium text-purple-600 bg-purple-50 px-3 py-1 rounded-full">
             Answered {answeredCount}/{quizz?.questions.length}
           </div>
         
@@ -187,15 +185,15 @@ fetchQuizzData()
    {/* Progress */}
         <div className="w-[90%] h-3 bg-gray-200 rounded-full overflow-hidden mb-10 mt-2">
           <div
-            className="h-full bg-emerald-500 transition-all duration-500"
+            className="h-full bg-purple-500 transition-all duration-500"
             style={{ width: `${progress}%` }}
           />
         </div>
    
        
-      <div className="w-full max-w-3xl bg-white shadow-2xl rounded-3xl p-8 border border-emerald-100">
-         <div className="text-sm px-2 py-1 mb-4 text-emerald-700 rounded-lg gap-2 inline-flex  items-center  bg-emerald-100 border-2 border-emerald-400 ">
-          <div className=" border-3 bg-emerald-700 rounded-full"/>
+      <div className="w-full max-w-3xl bg-white shadow-2xl rounded-3xl p-8 border border-purple-100">
+         <div className="text-sm px-2 py-1 mb-4 text-purple-700 rounded-lg gap-2 inline-flex  items-center  bg-purple-100 border-2 border-purple-400 ">
+          <div className=" border-3 bg-purple-700 rounded-full"/>
          <p>Question</p>
         {currentIndex + 1} 
        </div>
@@ -219,8 +217,8 @@ fetchQuizzData()
                 className={`flex items-center gap-4 p-4 rounded-xl border transition-all duration-200
                 ${
                   selected
-                    ? "bg-emerald-500 text-white border-emerald-500 shadow-md"
-                    : "border-gray-200 hover:border-emerald-400 hover:bg-emerald-50"
+                    ? "bg-purple-500 text-white border-purple-500 shadow-md"
+                    : "border-gray-200 hover:border-purple-400 hover:bg-purple-50"
                 }`}
               >
 
@@ -229,7 +227,7 @@ fetchQuizzData()
                   className={`w-8 h-8 flex items-center justify-center rounded-full text-sm font-semibold
                   ${
                     selected
-                      ? "bg-white text-emerald-600"
+                      ? "bg-white text-purple-600"
                       : "bg-gray-100 text-gray-600"
                   }`}
                 >
@@ -261,7 +259,7 @@ fetchQuizzData()
               <button
             onClick={handlesubmitQuizz}
             disabled={submiting}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500 text-white hover:bg-emerald-600 shadow-md disabled:opacity-40"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-purple-500 text-white hover:bg-purple-600 shadow-md disabled:opacity-40"
           >
            <span className="flex gap-2">
             {
@@ -282,7 +280,7 @@ fetchQuizzData()
           ):(  <button
             onClick={next}
             disabled={currentIndex === quizz?.questions.length - 1}
-            className="flex items-center gap-2 px-6 py-2 rounded-xl bg-emerald-500 text-white hover:bg-emerald-600 shadow-md disabled:opacity-40"
+            className="flex items-center gap-2 px-6 py-2 rounded-xl bg-purple-500 text-white hover:bg-purple-600 shadow-md disabled:opacity-40"
           >
             Next
             <ChevronRight size={18} />

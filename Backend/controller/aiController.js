@@ -62,8 +62,6 @@ export const generateQuiz = async (req, res, next) => {
   try {
     
     const { documentId, count = 10 } = req.body;
-    console.log(req.body);
-    console.log("count",count)
     if (!documentId) {
       return res.status(401).json({
         success: true,
@@ -126,7 +124,6 @@ export const generateQuiz = async (req, res, next) => {
 
 export const generatDocunetSummary = async (req, res, next) => {
   try {
-    console.log(req.body);
     const { documentId } = req.body;
     if (!documentId) {
       return res.status(401).json({
@@ -177,7 +174,6 @@ export const generatDocunetSummary = async (req, res, next) => {
 export const Chating = async (req, res, next) => {
   try {
     const { question, documentId } = req.body;
-    console.log(question,documentId);
     if (!documentId) {
       return res.status(401).json({
         success: true,
@@ -264,7 +260,6 @@ export const Chating = async (req, res, next) => {
 export const explainContext=async(req,res,next)=>{
     try {
         const { documentId,concept } = req.body;
-        console.log(documentId,concept);
     if (!documentId) {
       return res.status(401).json({
         success: true,
@@ -315,7 +310,6 @@ export const explainContext=async(req,res,next)=>{
 export const getChatHistory=async(req,res,next)=>{
     try{
       const {documentId}=req.body;
-      console.log("vk",documentId);
      if (!documentId) {
       return res.status(401).json({
         success: true,

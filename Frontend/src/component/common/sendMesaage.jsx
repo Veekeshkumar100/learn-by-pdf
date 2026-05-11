@@ -13,11 +13,11 @@ const MessageInput = ({ value, onChange, onSend }) => {
         rounded-2xl
         px-4 py-2
         transition-all duration-300
-        hover:border-emerald-400
+        hover:border-purple-400
         hover:shadow-md
-        focus-within:border-emerald-500
+        focus-within:border-purple-500
         focus-within:ring-2
-        focus-within:ring-emerald-200
+        focus-within:ring-purple-200
       ">
 
         {/* Input */}
@@ -42,10 +42,10 @@ const MessageInput = ({ value, onChange, onSend }) => {
             flex items-center justify-center
             w-10 h-10
             rounded-xl
-            bg-emerald-500
+            bg-purple-500
             text-white
             transition-all duration-300
-            hover:bg-emerald-600
+            hover:bg-purple-600
             hover:scale-105
             active:scale-95
             shadow-sm

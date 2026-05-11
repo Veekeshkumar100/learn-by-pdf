@@ -57,7 +57,6 @@ const renderDocument = () => {
     );
   }
 
-console.log(document?.filePath);
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 p-6">
       
@@ -67,8 +66,8 @@ console.log(document?.filePath);
           Document Viewer
         </h2>
         <a href={`${document?.filePath}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-lg 
-          bg-emerald-500 text-white font-medium
-          hover:bg-emerald-600 transition-all duration-200 shadow-md hover:shadow-lg">
+          bg-purple-600 text-white font-medium
+          hover:bg-purple-700 transition-all duration-200 shadow-md hover:shadow-lg">
   <ExternalLink size={18} strokeWidth={2} />
           Open in new tab
 </a>
@@ -125,7 +124,7 @@ const renderQuizzs=()=>{
   return (
     <div className='m-4'>
       <div className= "mb-3">
-        <Link  to="/documents" className=' inline-flex p-3 bg text-sm  rounded-2xl bg-emerald-400  items-center gap-2  text-white  cursor-pointer'>
+        <Link  to="/documents" className=' inline-flex p-3 bg text-sm  rounded-lg shadow-2xl shadow-purple-300 bg-purple-500  items-center gap-2  text-white  cursor-pointer'>
         <ArrowLeft strokeWidth={2} size={18}/>
           Back to Document 
         </Link>

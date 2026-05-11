@@ -5,7 +5,7 @@ import { axiosInstance } from "../utils/apiInstance";
 
 export const generateFlashCards =async(documentId)=>{
     try{        
-    const response = await axiosInstance.post(`/v1/ai/generate-FlashCard/`,{
+    const response = await axiosInstance.post(`/v1/ai/generate-FlashCard`,{
        documentId,
     })
     return response.data;
@@ -14,7 +14,6 @@ export const generateFlashCards =async(documentId)=>{
     }
 }
 export const generateQuizs =async(documentId,count)=>{
-    console.log(count);
     try{
     const response = await axiosInstance.post(`/v1/ai/generate-Quiz`,{
        documentId,

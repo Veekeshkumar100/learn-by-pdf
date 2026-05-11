@@ -10,7 +10,7 @@ const sizeStyles = {
 };
 
 const colorStyles = {
-  primary: "border-emerald-500 border-t-transparent",
+  primary: "border-purple-500 border-t-transparent",
   secondary: "border-blue-500 border-t-transparent",
   danger: "border-red-500 border-t-transparent",
   white: "border-white border-t-transparent",

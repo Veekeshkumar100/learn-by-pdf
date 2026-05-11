@@ -11,7 +11,6 @@ export const  getAllQuize=async(documentId)=>{
     }
 }
 export const  getQuize=async(id)=>{
-    console.log(id)
      try{
 
     const response = await axiosInstance.get(`v1/quizz/quiz/${id}`)
@@ -30,7 +29,6 @@ export const submitequizesAnswer=async(answers,id)=>{
     }
 }
 export const detailedResult=async(id)=>{
-    console.log(id);
       try{
     const response = await axiosInstance.post(`/v1/quizz//${id}/result`);
     return response.data;

@@ -23,10 +23,6 @@ const QuizzerResultPage = () => {
    useEffect(()=>{
 fetchQuizzResultData();
    },[quizId])
-   
-   console.log(results);
-      
-   
    const totalQuestions = results?.quiz?.totalQuestions;
    const correct = results?.result?.filter((q)=>q.isCurrect).length;
    const incorrect= totalQuestions - correct;
@@ -45,7 +41,7 @@ fetchQuizzResultData();
 
       {/* Back Button */}
       <div className="mt-6">
-        <Link to={`/documents/${results?.quiz?.documentId._id}`} className="flex items-center gap-2 mb-6 text-emerald-600 hover:text-emerald-700 mt-4">
+        <Link to={`/documents/${results?.quiz?.documentId._id}`} className="inline-flex px-3 py-2 rounded-lg bg-purple-500  items-center gap-2 mb-6 text-white hover:text-purple-700 mt-4">
         <ArrowLeft size={20} />
         Back to Document
         </Link>
@@ -121,7 +117,7 @@ fetchQuizzResultData();
       <div className="w-full max-w-4xl ">
             <div
            
-              className="bg-white shadow-md border border-emerald-100 rounded-2xl p-6"
+              className="bg-white shadow-md border border-purple-100 rounded-2xl p-6"
             >
 
               {/* Question */}
@@ -140,7 +136,7 @@ fetchQuizzResultData();
                   let style = "border-gray-200";
 
                   if (isCorrect) {
-                    style = "bg-emerald-100 border-emerald-500 text-emerald-700";
+                    style = "bg-purple-100 border-purple-500 text-purple-700";
                   }
 
                   if (isUser && !isCorrect) {
@@ -156,7 +152,7 @@ fetchQuizzResultData();
                       <span>{opt.replace(/\["|"\]/g, "")}</span>
 
                       {isCorrect && (
-                        <CheckCircle size={18} className="text-emerald-600" />
+                        <CheckCircle size={18} className="text-purple-600" />
                       )}
 
                       {isUser && !isCorrect && (
@@ -170,8 +166,8 @@ fetchQuizzResultData();
               </div>
 
               {/* Explanation */}
-              <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4">
-                <p className="text-sm font-semibold text-emerald-700 mb-1 flex items-center gap-2">
+              <div className="bg-purple-50 border border-purple-200 rounded-xl p-4">
+                <p className="text-sm font-semibold text-purple-700 mb-1 flex items-center gap-2">
                   <BookOpen className="w-4 h-4"  strokeWidth={2.5}/>
                   Explanation
                 </p>
@@ -191,7 +187,7 @@ fetchQuizzResultData();
    
 
    <div className="mt-6 flex justify-center items-center ">
-        <Link to={`/documents/${results?.quiz?.documentId._id}`} className="flex items-center gap-2 mb-6 text-white px-5 py-2 rounded-xl bg-emerald-400 font-bold ">
+        <Link to={`/documents/${results?.quiz?.documentId._id}`} className="flex items-center gap-2 mb-6 text-white px-5 py-2 rounded-xl bg-purple-400 font-bold ">
         <ArrowLeft size={20} />
         Return to Document
         </Link>

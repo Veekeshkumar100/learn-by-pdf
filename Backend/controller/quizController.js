@@ -3,7 +3,6 @@ import { Quizz } from "../model/qizzs.js";
 export const getAllQuize = async (req, res, next) => {
   try {
     const  documentId  = req.params.documentId;
-    console.log("id",documentId)
     if (!documentId) {
       return res.status(401).json({
         success: true,
@@ -64,7 +63,6 @@ export const getQuize = async (req, res, next) => {
 export const submitequizesAnswer = async (req, res, next) => {
   try {
     const { answers } = req.body;
-      console.log(answers)
     if (!answers) {
       return res.status(401).json({
         success: false,
@@ -98,10 +96,8 @@ export const submitequizesAnswer = async (req, res, next) => {
       let userAnswers=[];
        answers.forEach(answer => {
      let { questionIndex, selectedAnswer } = answer;
-         console.log("sles",selectedAnswer);
         const question = quizes.questions[questionIndex];  
         const isCorrect =  selectedAnswer === question.correctAnswer;
-        console.log("iscirrect",isCorrect);
         if(isCorrect) currectCount++;
         userAnswers.push({
             questionIndex:questionIndex,
@@ -157,7 +153,6 @@ export const detailtedResult = async(req,res,next)=>{
       });
        }   
        const ditailedResult =quizes.questions?.map((question,index)=>{
-           console.log("q",question);
        const userAnswers= quizes.userAnswers.find(a=>a.questionIndex===index);
        return {
         questionIndex:index,

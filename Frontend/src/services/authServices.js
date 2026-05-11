@@ -4,11 +4,9 @@ import { axiosInstance } from "../utils/apiInstance.js";
 
 
 export const loginUser =async(formData)=>{
-    console.log(formData);
     try{
     const response = await axiosInstance.post('/v1/users/login',formData);
 
-    console.log(response);
     return response.data;
     }catch(error){
       if (error.response) {
