@@ -16,13 +16,13 @@ const ChatInstance = () => {
       const bottomRef = useRef(null);
 
   // Auto scroll to bottom when messages update
-
+ 
 
   const fetchChatHistory=async(id)=>{
     try {
         SetinitialLoading(true)
         const responce =await generateChatHistory(id)
-       SetHistory(responce.messagedata);    
+       SetHistory(responce.messagedata);  
     } catch (error) {
          console.log(error.message ||"Fialed to fetched chat history")
     } finally{
@@ -167,7 +167,9 @@ const ChatInstance = () => {
                   }
                 `}
               >
-                {new Date(msg.timeStamp).toLocaleTimeString()}
+                {console.log(msg)}
+                {
+        new Date(msg && msg.timeStamp).toLocaleTimeString()}
               </span>
 
             </div>

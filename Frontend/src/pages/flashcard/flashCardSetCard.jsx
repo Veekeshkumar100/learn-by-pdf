@@ -8,10 +8,9 @@ import {
 } from "lucide-react";
 
 const FlashCardsSetCard = ({ flashCard, onDelete }) => {
-  
   const navigate = useNavigate();
   const handleStudyNow = () => {
-    navigate(`/documents/${flashCard.documentId._id}/flashcards`);
+    navigate(`/documents/${flashCard.documentId?._id}/flashcards`);
   };
 
   const reviewedCount = flashCard.cards.filter(
